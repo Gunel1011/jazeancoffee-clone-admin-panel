@@ -1,0 +1,23 @@
+@use "../../variables" as *;
+.home {
+  background: linear-gradient(#00000097),
+    url(../../../img/Asset-24.png) center/cover;
+  height: calc(100vh - 100px);
+  
+  .container {
+    .row {
+      justify-content: center;
+      align-items: center;
+      height: calc(100vh - 100px);
+      .homeTitle {
+        font-size: 30px;
+        color: $brown;
+        background-color: $dimWhite;
+        padding: 10px;
+        border-radius: 5px;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Verdana, sans-serif;
+      }
+    }
+  }
+}

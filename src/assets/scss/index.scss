@@ -1,0 +1,12 @@
+// global
+@use "../scss/base";
+
+// components
+@use "../scss/components/header";
+@use "../scss/components/footer";
+@use "../scss/components/loading";
+@use "../scss/components/notFound";
+
+// pages
+@use "./pages/Home/home";
+@use "./pages/Dashboard/all-coffee";
