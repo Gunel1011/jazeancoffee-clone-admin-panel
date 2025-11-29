@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import Home from "../Modules/Home/Home";
 import AllCoffee from "../Modules/Dashboard/View/AllCoffee";
 import NotFound from "../components/NotFound";
+import EditCoffee from "../Modules/Dashboard/View/EditCoffee";
 
 interface IPage {
   id: string;
@@ -35,6 +36,14 @@ const pageList: IPage[] = [
     elemet: <Home />,
     is_visible: true,
     for_header: true,
+  },
+  {
+    id: "edit-coffee",
+    title: "Edit Coffee",
+    path: "/edit-coffee/:id",
+    elemet: <EditCoffee />,
+    is_visible: true,
+    for_header: false,
   },
   {
     id: "not_found",

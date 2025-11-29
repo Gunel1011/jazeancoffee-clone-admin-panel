@@ -3,7 +3,7 @@
   width: 100%;
   padding: 16px 0;
   background-color: $brown;
-  height: 100px;
+  height: 70px;
   box-shadow: 1px 0 20px 1px $dimWhite;
   .container {
     .row {
@@ -25,6 +25,9 @@
         .socialItem {
           cursor: pointer;
           color: $dimWhite;
+          a {
+            color: $pureWhite;
+          }
           &:hover {
             svg {
               path {

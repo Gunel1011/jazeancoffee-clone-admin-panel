@@ -8,7 +8,7 @@ interface IEntiponts {
 const endpoints: IEntiponts = {
   get_all_products: "/products",
   get_single_product: "/products",
-  put_product: "/products",
+  put_product: "/products/",
   login: "/login",
 };
 

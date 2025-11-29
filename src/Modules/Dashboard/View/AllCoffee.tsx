@@ -29,7 +29,6 @@ const AllCoffee = () => {
   }
   return (
     <section className="allCoffe">
-      {/* {loading && <Loader />} */}
       <div className="container">
         <div className="row">
           <h2 className="coffeeTitle">All Cars List</h2>
@@ -55,7 +54,7 @@ const AllCoffee = () => {
                   <td>{item.details}</td>
                   <td>{item.price} $</td>
                   <td className="edit">
-                    <Link to={`/edit-car/${item._id}`}>
+                    <Link to={`/edit-coffee/${item._id}`}>
                       <FaEdit />
                     </Link>
                     <FaTrash />
