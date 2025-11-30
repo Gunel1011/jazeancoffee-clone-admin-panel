@@ -6,6 +6,7 @@
   position: fixed;
   width: 100%;
   box-shadow: 1px 0 20px 1px $dimWhite;
+  z-index: 9999;
   .container {
     .row {
       justify-content: space-between;
@@ -24,6 +25,52 @@
               color: $pureWhite;
               &:hover {
                 opacity: 0.6;
+              }
+            }
+          }
+        }
+      }
+      .userArea {
+        .login {
+          color: $pureWhite;
+          width: 30px;
+          height: 30px;
+          cursor: pointer;
+        }
+        a {
+          color: $pureWhite;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+      }
+      .avatar {
+        position: relative;
+        .loginIcon {
+          color: $pureWhite;
+          font-size: 30px;
+        }
+        .userMenu {
+          background-color: $bgNotFound;
+          padding: 20px;
+          position: absolute;
+          top: 50px;
+          right: -50px;
+          border-radius: 8px;
+          display: none;
+          flex-direction: column;
+          gap: 10px;
+          &.active {
+            display: flex;
+          }
+          .userMenuItem {
+            a {
+              color: $pureWhite;
+              display: flex;
+              width: 100px;
+              gap: 10px;
+              &:hover {
+                color: $softOrange;
               }
             }
           }

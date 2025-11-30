@@ -23,4 +23,16 @@ export class ShopService {
       return res.data;
     });
   }
+
+  static async addNewCoffee(payload: IProductRequest) {
+    return await ShopProvider.postNewCoffee(payload).then((res) => {
+      return res.data;
+    });
+  }
+
+  static async removeNewCoffee(id: string) {
+    return await ShopProvider.deleteCoffee(id).then((res) => {
+      return res.data;
+    });
+  }
 }

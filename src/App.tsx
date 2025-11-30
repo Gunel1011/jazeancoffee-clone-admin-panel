@@ -1,3 +1,4 @@
+import { ToastContainer } from "react-toastify";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Myrouters from "./router/Myrouters";
@@ -9,6 +10,7 @@ const App = () => {
       <Header />
       <Myrouters />
       <Footer />
+      <ToastContainer />
     </Auth>
   );
 };

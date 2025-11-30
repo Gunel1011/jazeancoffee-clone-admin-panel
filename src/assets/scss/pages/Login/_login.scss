@@ -1,0 +1,61 @@
+@use "../../variables" as *;
+.loginSection {
+  padding-top: 100px;
+  height: calc(100vh - 70px);
+  .container {
+    .row {
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      height: 65vh;
+      .loginSectionTitle {
+        color: $pureWhite;
+        margin: 20px 0;
+      }
+      .loginBox {
+        background-color: $bg;
+        width: 30%;
+        padding: 30px;
+        border-radius: 5px;
+        form {
+          display: flex;
+          flex-direction: column;
+          color: $pureWhite;
+          .userBox {
+            margin-bottom: 20px;
+            .errorMsg {
+              color: $red;
+              font-size: 16px;
+            }
+          }
+          input {
+            width: 100%;
+            padding: 10px 0;
+            font-size: 16px;
+            color: $pureWhite;
+            margin-bottom: 10px;
+            border: none;
+            border-bottom: 1px solid $pureWhite;
+            outline: none;
+            background: transparent;
+          }
+          .loginBtn {
+            padding: 10px;
+            background-color: $green;
+            border: none;
+            border-radius: 5px;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            &:hover {
+              opacity: 0.6;
+            }
+            &:active {
+              transform: scale(0.8);
+            }
+          }
+        }
+      }
+    }
+  }
+}

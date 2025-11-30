@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import type { IProduct } from "../Models/DashboardModels";
 import { ShopService } from "../Services/DashboardServices";
 import Loading from "../../../components/Loading";
+import showNotification from "../../../utils/showNotification";
 
 const AllCoffee = () => {
   const [product, setProduct] = useState<IProduct[]>([]);
@@ -24,6 +25,20 @@ const AllCoffee = () => {
   useEffect(() => {
     getData();
   }, []);
+
+  const handleRemove = async (id: string) => {
+    setLoading(true);
+    try {
+      await ShopService.removeNewCoffee(id);
+      getData();
+      showNotification("success");
+    } catch (error: any) {
+      console.log(error);
+      showNotification("error", error.response?.data);
+    } finally {
+      setLoading(false);
+    }
+  };
   if (loading) {
     return <Loading />;
   }
@@ -31,7 +46,7 @@ const AllCoffee = () => {
     <section className="allCoffe">
       <div className="container">
         <div className="row">
-          <h2 className="coffeeTitle">All Cars List</h2>
+          <h2 className="coffeeTitle">All Coffee List</h2>
           <table className="table">
             <thead>
               <tr>
@@ -57,7 +72,7 @@ const AllCoffee = () => {
                     <Link to={`/edit-coffee/${item._id}`}>
                       <FaEdit />
                     </Link>
-                    <FaTrash />
+                    <FaTrash onClick={() => handleRemove(item._id)} />
                   </td>
                 </tr>
               ))}

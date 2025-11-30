@@ -1,24 +1,20 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import type { IProduct, IProductRequest } from "../Models/DashboardModels";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import type { IProductRequest } from "../Models/DashboardModels";
 import Loading from "../../../components/Loading";
 import { ShopService } from "../Services/DashboardServices";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { number, object, string } from "yup";
 import showNotification from "../../../utils/showNotification";
-
 const coffeeShema = object({
   name: string().trim().required("This field should not be empty!"),
   details: string().trim().required("This field should not be empty!"),
   price: number().required("This field should not be empty!"),
 });
-
-const EditCoffee = () => {
-  const { id } = useParams();
+const AddNewProduct = () => {
   const navigation = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [details, setDetails] = useState<IProduct>({} as IProduct);
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState("");
 
@@ -29,26 +25,11 @@ const EditCoffee = () => {
   } = useForm<IProductRequest>({
     resolver: yupResolver(coffeeShema),
     values: {
-      name: details?.name,
-      details: details?.details,
-      price: details?.price,
+      name: "",
+      details: "",
+      price: 0,
     },
   });
-  const getDetails = async () => {
-    setLoading(true);
-    try {
-      const res = await ShopService.coffeeDetails(id || "");
-      setDetails(res);
-      setPreview(res.productImage);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-  useEffect(() => {
-    getDetails();
-  }, [id]);
 
   const handleSeletctImage = (e: any) => {
     const file = e.target.files[0];
@@ -66,11 +47,11 @@ const EditCoffee = () => {
       if (image) {
         formData.append("productImage", image);
         // @ts-ignore
-        const res = await ShopService.editCoffee(formData, details._id);
+        const res = await ShopService.addNewCoffee(formData);
         console.log(res);
       }
       showNotification("success");
-      navigation(-1);
+      navigation("/coffee");
     } catch (errors: any) {
       console.log(errors);
       showNotification("error", errors.response?.data);
@@ -86,7 +67,7 @@ const EditCoffee = () => {
     <section className="editCoffee">
       <div className="container">
         <div className="row">
-          <h2 className="titleEdit">Edit coffee data</h2>
+          <h2 className="titleEdit">Add coffee data</h2>
           <div className="login-box">
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="user-box">
@@ -131,16 +112,15 @@ const EditCoffee = () => {
                   id="cImg"
                   onChange={handleSeletctImage}
                 />
-                {/* <div className="previewImage">
+                {preview && (
+                  <div className="previewImage">
                     <img src={preview} alt="old-img" />
-                  </div> */}
-                <div className="previewImage">
-                  <img src={preview} alt="new-img" />
-                </div>
+                  </div>
+                )}
               </div>
               <div className="btn">
                 <button>
-                  Edit Coffee
+                  Add new Coffee
                   <span></span>
                 </button>
               </div>
@@ -152,4 +132,4 @@ const EditCoffee = () => {
   );
 };
 
-export default EditCoffee;
+export default AddNewProduct;

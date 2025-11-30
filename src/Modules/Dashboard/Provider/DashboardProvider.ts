@@ -16,3 +16,11 @@ export const putCoffeeDetails = async (
 ) => {
   return $axios.put<IProduct>($api("put_product") + id, payload);
 };
+
+export const postNewCoffee = async (payload: IProductRequest) => {
+  return $axios.post<IProduct>($api("post_product"), payload);
+};
+
+export const deleteCoffee = async (id: string) => {
+  return $axios.delete($api("delete_product") + id);
+};

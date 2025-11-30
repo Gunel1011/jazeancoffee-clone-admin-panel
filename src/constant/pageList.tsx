@@ -3,6 +3,8 @@ import Home from "../Modules/Home/Home";
 import AllCoffee from "../Modules/Dashboard/View/AllCoffee";
 import NotFound from "../components/NotFound";
 import EditCoffee from "../Modules/Dashboard/View/EditCoffee";
+import Login from "../Modules/Login/View/Login";
+import AddNewProduct from "../Modules/Dashboard/View/AddNewProduct";
 
 interface IPage {
   id: string;
@@ -33,7 +35,7 @@ const pageList: IPage[] = [
     id: "add-coffee",
     title: "Add new coffee",
     path: "/add-coffee",
-    elemet: <Home />,
+    elemet: <AddNewProduct />,
     is_visible: true,
     for_header: true,
   },
@@ -42,6 +44,14 @@ const pageList: IPage[] = [
     title: "Edit Coffee",
     path: "/edit-coffee/:id",
     elemet: <EditCoffee />,
+    is_visible: true,
+    for_header: false,
+  },
+  {
+    id: "login",
+    title: "Login",
+    path: "/login",
+    elemet: <Login />,
     is_visible: true,
     for_header: false,
   },
