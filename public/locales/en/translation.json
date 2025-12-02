@@ -1,0 +1,52 @@
+{
+  "header": {
+    "home": "Home",
+    "coffee": "Coffee",
+    "add-coffee": "Add new coffee",
+    "profile": "Profile",
+    "setting": "Setting",
+    "logout": "Log out"
+  },
+  "footer": {
+    "follow": "follow us"
+  },
+  "home": {
+    "welcomeJazeanDashboard": "Welcome Jazean Dashboard"
+  },
+  "coffee": {
+    "allCoffeeList": "All Coffee List",
+    "cofferImage": "Coffee Image",
+    "coffeeName": "Coffee Name",
+    "coffeeDetails": "Coffee Details",
+    "coffeePrice": "Coffee Price",
+    "editCoffee": "Edit Coffee"
+  },
+  "add-coffee": {
+    "addcoffeedata": "Add coffee data",
+    "coffeeName": "Coffee Name",
+    "coffeeDetails": "Coffee Details",
+    "coffeePrice": "Coffee Price",
+    "addNewCoffee": "Add new coffee"
+  },
+  "profile": {
+    "profile": "Profile",
+    "name": "Name",
+    "surname":"surname",
+    "age": "Age",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address"
+  },
+  "setting": {
+    "profileSetting": "Profile Setting",
+    "name": "Name",
+    "age": "Age",
+    "amail": "Email",
+    "ahone": "Phone",
+    "address": "Address",
+    "admin": "Admin",
+    "user": "User",
+    "isActive": "Is active ?",
+    "updateProfile": "UPDATE PROFILE"
+  }
+}

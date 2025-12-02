@@ -1,14 +1,25 @@
 // Icons
 import { FaTwitter, FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import i18n, { changeLanguage } from "i18next";
+import { useTranslation } from "react-i18next";
+
 const Footer = () => {
+  const [selectedLng, setSletectedLng] = useState(i18n.language || "");
+  const { t } = useTranslation();
+
+  const handleChangeLng = (lng: string) => {
+    changeLanguage(lng);
+    setSletectedLng(lng);
+  };
   return (
     <footer className="footer">
       <div className="container">
         <div className="row">
           <p className="copyright">Jazean Coffee</p>
           <ul className="socialList">
-            <li className="socialItem">Follow us</li>
+            <li className="socialItem"> {t("footer.follow")}</li>
             <li className="socialItem">
               <Link target="_blank" to={"https://x.com/Jazeancoffee"}>
                 <FaTwitter />
@@ -42,7 +53,12 @@ const Footer = () => {
             </li>
           </ul>
           <div className="inps">
-            <select name="language" className="language">
+            <select
+              name="language"
+              className="language"
+              value={selectedLng}
+              onChange={(e) => handleChangeLng(e.target.value)}
+            >
               <option value="en">English</option>
               <option value="az">Azərbaycanca</option>
               <option value="tr">Türkçe</option>

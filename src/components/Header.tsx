@@ -5,8 +5,10 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { useContext, useState } from "react";
 import { AuthContext } from "../utils/AuthContext";
 import { MdLogout } from "react-icons/md";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
+  const { t } = useTranslation();
   const { isUserIn } = useContext(AuthContext);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   return (
@@ -25,7 +27,9 @@ const Header = () => {
                 .map((item) => (
                   <ul key={item.id}>
                     <li className="listItem">
-                      <NavLink to={item.path}>{item.title}</NavLink>
+                      <NavLink to={item.path}>
+                        {t(`header.${[item.id]}`)}
+                      </NavLink>
                     </li>
                   </ul>
                 ))}
@@ -43,20 +47,20 @@ const Header = () => {
                   className="userMenuItem"
                   onClick={() => setIsUserMenuOpen(false)}
                 >
-                  <Link to={"/profile"}>Profile</Link>
+                  <Link to={"/profile"}>{t("header.profile")}</Link>
                 </li>
                 <li
                   className="userMenuItem"
                   onClick={() => setIsUserMenuOpen(false)}
                 >
-                  <Link to={"/setting"}>Setting</Link>
+                  <Link to={"/setting"}>{t("header.setting")}</Link>
                 </li>
                 <li
                   className="userMenuItem"
                   onClick={() => setIsUserMenuOpen(false)}
                 >
                   <Link to={"/"}>
-                    Log out
+                    {t("header.logout")}
                     <MdLogout />
                   </Link>
                 </li>
@@ -66,7 +70,7 @@ const Header = () => {
             <div className="userArea">
               <Link to={"/login"}>
                 <FaRegUserCircle className="login" />
-                Login
+                {t("header.login")}
               </Link>
             </div>
           )}

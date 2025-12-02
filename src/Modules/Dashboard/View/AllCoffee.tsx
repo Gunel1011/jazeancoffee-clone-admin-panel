@@ -7,8 +7,10 @@ import type { IProduct } from "../Models/DashboardModels";
 import { ShopService } from "../Services/DashboardServices";
 import Loading from "../../../components/Loading";
 import showNotification from "../../../utils/showNotification";
+import { useTranslation } from "react-i18next";
 
 const AllCoffee = () => {
+  const { t } = useTranslation();
   const [product, setProduct] = useState<IProduct[]>([]);
   const [loading, setLoading] = useState(false);
   const getData = async () => {
@@ -46,16 +48,16 @@ const AllCoffee = () => {
     <section className="allCoffe">
       <div className="container">
         <div className="row">
-          <h2 className="coffeeTitle">All Coffee List</h2>
+          <h2 className="coffeeTitle">{t("coffee.allCoffeeList")}</h2>
           <table className="table">
             <thead>
               <tr>
                 <th>No</th>
-                <th>Car Image</th>
-                <th>Car Name</th>
-                <th>Car Details</th>
-                <th>Car Price</th>
-                <th>Edit Car</th>
+                <th>{t("coffee.cofferImage")}</th>
+                <th>{t("coffee.coffeeName")}</th>
+                <th>{t("coffee.coffeeDetails")}</th>
+                <th>{t("coffee.coffeePrice")}</th>
+                <th>{t("coffee.editCoffee")}</th>
               </tr>
             </thead>
             <tbody>

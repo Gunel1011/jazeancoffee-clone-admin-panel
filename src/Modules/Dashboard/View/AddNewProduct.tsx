@@ -7,12 +7,14 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { number, object, string } from "yup";
 import showNotification from "../../../utils/showNotification";
+import { useTranslation } from "react-i18next";
 const coffeeShema = object({
   name: string().trim().required("This field should not be empty!"),
   details: string().trim().required("This field should not be empty!"),
   price: number().required("This field should not be empty!"),
 });
 const AddNewProduct = () => {
+  const { t } = useTranslation();
   const navigation = useNavigate();
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState<File | null>(null);
@@ -67,7 +69,7 @@ const AddNewProduct = () => {
     <section className="editCoffee">
       <div className="container">
         <div className="row">
-          <h2 className="titleEdit">Add coffee data</h2>
+          <h2 className="titleEdit">{t("add-coffee.addcoffeedata")}</h2>
           <div className="login-box">
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="user-box">
@@ -76,7 +78,9 @@ const AddNewProduct = () => {
                   type="text"
                   {...register("name")}
                 />
-                <label className={errors.name ? "error" : ""}>Car Name</label>
+                <label className={errors.name ? "error" : ""}>
+                  {t("add-coffee.coffeeName")}
+                </label>
               </div>
               {errors.name && (
                 <span className="error">{errors.name?.message}</span>
@@ -88,7 +92,7 @@ const AddNewProduct = () => {
                   {...register("details")}
                 />
                 <label className={errors.details ? "error" : ""}>
-                  Car Details
+                  {t("add-coffee.coffeeDetails")}
                 </label>
               </div>
               {errors.details && (
@@ -100,7 +104,9 @@ const AddNewProduct = () => {
                   type="number"
                   {...register("price")}
                 />
-                <label className={errors.price ? "error" : ""}>Car Price</label>
+                <label className={errors.price ? "error" : ""}>
+                  {t("add-coffee.coffeePrice")}
+                </label>
               </div>
               {errors.price && (
                 <span className="error">{errors.price?.message}</span>
@@ -120,7 +126,7 @@ const AddNewProduct = () => {
               </div>
               <div className="btn">
                 <button>
-                  Add new Coffee
+                  {t("add-coffee.addNewCoffee")}
                   <span></span>
                 </button>
               </div>

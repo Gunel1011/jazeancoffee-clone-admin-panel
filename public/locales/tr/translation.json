@@ -1,0 +1,52 @@
+{
+  "header": {
+    "home": "Ana sayfa",
+    "coffee": "Kahve",
+    "add-coffee": "Yeni kahve ekle",
+    "profile": "Profil",
+    "setting": "Ayarlar",
+    "logout": "Çıkış yap"
+  },
+  "footer": {
+    "follow": "Bizi takip edin"
+  },
+  "home": {
+    "welcomeJazeanDashboard": "Jazean yönetim paneline hoş geldiniz"
+  },
+  "coffee": {
+    "allCoffeeList": "Tüm kahve listesi",
+    "cofferImage": "Kahve görseli",
+    "coffeeName": "Kahve adı",
+    "coffeeDetails": "Kahve detayları",
+    "coffeePrice": "Kahve fiyatı",
+    "editCoffee": "Kahveyi düzenle"
+  },
+  "add-coffee": {
+    "addcoffeedata": "Kahve bilgisi ekle",
+    "coffeeName": "Kahve adı",
+    "coffeeDetails": "Kahve detayları",
+    "coffeePrice": "Kahve fiyatı",
+    "addNewCoffee": "Yeni kahve ekle"
+  },
+  "profile": {
+    "profile": "Profil",
+    "name": "İsim",
+    "surname": "Soyisim",
+    "age": "Yaş",
+    "email": "Email",
+    "phone": "Telefon",
+    "address": "Adres"
+  },
+  "setting": {
+    "profileSetting": "Profil ayarları",
+    "name": "İsim",
+    "age": "Yaş",
+    "amail": "Email",
+    "ahone": "Telefon",
+    "address": "Adres",
+    "admin": "Admin",
+    "user": "Kullanıcı",
+    "isActive": "Aktif mi?",
+    "updateProfile": "Profili güncelle"
+  }
+}

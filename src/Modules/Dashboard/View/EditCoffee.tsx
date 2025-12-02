@@ -7,6 +7,7 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { number, object, string } from "yup";
 import showNotification from "../../../utils/showNotification";
+import { useTranslation } from "react-i18next";
 
 const coffeeShema = object({
   name: string().trim().required("This field should not be empty!"),
@@ -15,6 +16,7 @@ const coffeeShema = object({
 });
 
 const EditCoffee = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
   const navigation = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -94,7 +96,9 @@ const EditCoffee = () => {
                   type="text"
                   {...register("name")}
                 />
-                <label className={errors.name ? "error" : ""}>Car Name</label>
+                <label className={errors.name ? "error" : ""}>
+                  {t("coffee.coffeeName")}
+                </label>
               </div>
               {errors.name && (
                 <span className="error">{errors.name?.message}</span>
@@ -106,7 +110,7 @@ const EditCoffee = () => {
                   {...register("details")}
                 />
                 <label className={errors.details ? "error" : ""}>
-                  Car Details
+                  {t("coffee.coffeeDetails")}
                 </label>
               </div>
               {errors.details && (
@@ -118,7 +122,9 @@ const EditCoffee = () => {
                   type="number"
                   {...register("price")}
                 />
-                <label className={errors.price ? "error" : ""}>Car Price</label>
+                <label className={errors.price ? "error" : ""}>
+                  {t("coffee.coffeePrice")}
+                </label>
               </div>
               {errors.price && (
                 <span className="error">{errors.price?.message}</span>
@@ -139,7 +145,7 @@ const EditCoffee = () => {
               </div>
               <div className="btn">
                 <button>
-                  Edit Coffee
+                  {t("coffee.editCoffee")}
                   <span></span>
                 </button>
               </div>

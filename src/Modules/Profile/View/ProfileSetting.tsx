@@ -7,6 +7,7 @@ import { useContext, useState } from "react";
 import { ProfileService } from "../Service/ProfileService";
 import showNotification from "../../../utils/showNotification";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const userShema = object({
   name: string().trim().required(),
@@ -18,6 +19,7 @@ const userShema = object({
   isActive: boolean().required(),
 });
 const ProfileSetting = () => {
+  const { t } = useTranslation();
   const { user }: any = useContext(AuthContext);
   const [image, setImage] = useState("");
   const [preview, setPreview] = useState("");
@@ -58,7 +60,7 @@ const ProfileSetting = () => {
     <section className="editCoffee">
       <div className="container">
         <div className="row">
-          <h2 className="titleEdit">Profile Setting</h2>
+          <h2 className="titleEdit">{t("setting.profileSetting")}</h2>
           <div className="login-box">
             <form onSubmit={handleSubmit(onSubmit)}>
               {/* name  */}
@@ -68,7 +70,9 @@ const ProfileSetting = () => {
                   type="text"
                   {...register("name")}
                 />
-                <label className={errors.name ? "error" : ""}>Name</label>
+                <label className={errors.name ? "error" : ""}>
+                  {t("setting:name")}
+                </label>
               </div>
               {errors.name && (
                 <span className="error">{errors.name?.message}</span>
@@ -80,7 +84,9 @@ const ProfileSetting = () => {
                   type="text"
                   {...register("surname")}
                 />
-                <label className={errors.surname ? "error" : ""}>Surnem</label>
+                <label className={errors.surname ? "error" : ""}>
+                  {t("setting:surname")}
+                </label>
               </div>
               {errors.surname && (
                 <span className="error">{errors.surname?.message}</span>
@@ -92,7 +98,9 @@ const ProfileSetting = () => {
                   type="number"
                   {...register("age")}
                 />
-                <label className={errors.age ? "error" : ""}>Age</label>
+                <label className={errors.age ? "error" : ""}>
+                  {t("setting:age")}
+                </label>
               </div>
               {errors.age && (
                 <span className="error">{errors.age?.message}</span>
@@ -105,7 +113,7 @@ const ProfileSetting = () => {
                   {...register("phone")}
                 />
                 <label className={errors.age ? "error" : ""}>
-                  Phone Number
+                  {t("setting:phone")}
                 </label>
               </div>
               {errors.phone && (
@@ -118,7 +126,9 @@ const ProfileSetting = () => {
                   type="text"
                   {...register("email")}
                 />
-                <label className={errors.age ? "error" : ""}>Email</label>
+                <label className={errors.age ? "error" : ""}>
+                  {t("setting:email")}
+                </label>
               </div>
               {errors.email && (
                 <span className="error">{errors.email?.message}</span>
@@ -130,7 +140,9 @@ const ProfileSetting = () => {
                   type="text"
                   {...register("address")}
                 />
-                <label className={errors.address ? "error" : ""}>Address</label>
+                <label className={errors.address ? "error" : ""}>
+                  {t("setting.address")}
+                </label>
               </div>
               {errors.address && (
                 <span className="error">{errors.address?.message}</span>
@@ -139,7 +151,7 @@ const ProfileSetting = () => {
               <div className="userBox">
                 <div className="roleBox">
                   <label htmlFor="roleAdmin" style={{ color: "#fff" }}>
-                    Admin
+                    {t("setting.admin")}
                   </label>
                   <input
                     type="radio"
@@ -151,7 +163,7 @@ const ProfileSetting = () => {
                 </div>
                 <div className="roleBox">
                   <label htmlFor="role" style={{ color: "#fff" }}>
-                    User
+                    {t("setting.user")}
                   </label>
                   <input
                     type="radio"
@@ -164,7 +176,7 @@ const ProfileSetting = () => {
               </div>
               <div className="user-box">
                 <input type="checkbox" {...register("isActive")} />
-                <label>Is Active ?</label>
+                <label>{t("setting.isActive")}</label>
               </div>
               <div className="user-box">
                 <input
@@ -182,7 +194,7 @@ const ProfileSetting = () => {
 
               <div className="btn">
                 <button>
-                  Update profile
+                  {t("setting.updateProfile")}
                   <span></span>
                 </button>
               </div>
