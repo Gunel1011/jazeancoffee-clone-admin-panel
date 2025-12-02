@@ -23,9 +23,11 @@ const Header = () => {
               {pageList
                 .filter((page) => page.for_header)
                 .map((item) => (
-                  <li className="listItem">
-                    <NavLink to={item.path}>{item.title}</NavLink>
-                  </li>
+                  <ul key={item.id}>
+                    <li className="listItem">
+                      <NavLink to={item.path}>{item.title}</NavLink>
+                    </li>
+                  </ul>
                 ))}
             </ul>
           </nav>
@@ -41,13 +43,13 @@ const Header = () => {
                   className="userMenuItem"
                   onClick={() => setIsUserMenuOpen(false)}
                 >
-                  <Link to={"/"}>Profile</Link>
+                  <Link to={"/profile"}>Profile</Link>
                 </li>
                 <li
                   className="userMenuItem"
                   onClick={() => setIsUserMenuOpen(false)}
                 >
-                  <Link to={"/"}>Setting</Link>
+                  <Link to={"/setting"}>Setting</Link>
                 </li>
                 <li
                   className="userMenuItem"

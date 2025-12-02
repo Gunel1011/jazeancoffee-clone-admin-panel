@@ -13,7 +13,7 @@ export class ShopService {
     return await ShopProvider.getCoffeeDetails(id).then((res) => {
       return {
         ...res.data,
-        productImage: import.meta.env.VITE_IMAGE_URL + res.data.productImage,
+        productImage: import.meta.env.VITE_IMAGE_URL + '/' + res.data.productImage,
       };
     });
   }

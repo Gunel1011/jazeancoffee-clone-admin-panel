@@ -18,6 +18,15 @@
         border-radius: 10px;
         text-align: right;
         form {
+          .userBox {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 40px;
+            .roleBox {
+              display: flex;
+              gap: 20px;
+            }
+          }
           .user-box {
             position: relative;
             input {

@@ -5,6 +5,8 @@ import NotFound from "../components/NotFound";
 import EditCoffee from "../Modules/Dashboard/View/EditCoffee";
 import Login from "../Modules/Login/View/Login";
 import AddNewProduct from "../Modules/Dashboard/View/AddNewProduct";
+import Profile from "../Modules/Profile/View/Profile";
+import ProfileSetting from "../Modules/Profile/View/ProfileSetting";
 
 interface IPage {
   id: string;
@@ -44,6 +46,22 @@ const pageList: IPage[] = [
     title: "Edit Coffee",
     path: "/edit-coffee/:id",
     elemet: <EditCoffee />,
+    is_visible: true,
+    for_header: false,
+  },
+  {
+    id: "profile",
+    title: "Profile",
+    path: "/profile",
+    elemet: <Profile />,
+    is_visible: true,
+    for_header: false,
+  },
+  {
+    id: "profileSetting",
+    title: "ProfileSetting",
+    path: "/setting",
+    elemet: <ProfileSetting />,
     is_visible: true,
     for_header: false,
   },

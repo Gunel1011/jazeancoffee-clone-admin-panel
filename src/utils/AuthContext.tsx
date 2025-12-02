@@ -1,5 +1,7 @@
 import { createContext, useEffect, useState, type ReactNode } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { ProfileService } from "../Modules/Profile/Service/ProfileService";
+import type { IUser } from "../Modules/Profile/Models/ProfileModels";
 export const AuthContext = createContext({});
 
 export const Auth = ({ children }: { children: ReactNode }) => {
@@ -7,7 +9,8 @@ export const Auth = ({ children }: { children: ReactNode }) => {
   const navigate = useNavigate();
   const path = useLocation();
   const [isUserIn, setIsUserIn] = useState(true);
- 
+  const [user, setUser] = useState<IUser | null>(null);
+
   const chekToken = async () => {
     const storedToken = localStorage.getItem("token");
     if (storedToken) {
@@ -26,7 +29,21 @@ export const Auth = ({ children }: { children: ReactNode }) => {
       chekToken();
     }
   }, []);
-  const globals = { isUserIn, setIsUserIn };
+
+  const getProfile = async () => {
+    try {
+      const res = await ProfileService.getUserData();
+      setUser(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    if (!user) {
+      getProfile();
+    }
+  }, []);
+  const globals = { isUserIn, setIsUserIn, user, setUser };
   return (
     <AuthContext.Provider value={globals}>{children}</AuthContext.Provider>
   );

@@ -55,7 +55,6 @@ const EditCoffee = () => {
     setImage(file);
     setPreview(URL.createObjectURL(file));
   };
-
   const onSubmit: SubmitHandler<IProductRequest> = async (data) => {
     setLoading(true);
     try {
