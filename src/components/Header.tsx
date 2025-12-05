@@ -9,7 +9,11 @@ import { useTranslation } from "react-i18next";
 
 const Header = () => {
   const { t } = useTranslation();
-  const { isUserIn } = useContext(AuthContext);
+  type AuthContextType = {
+    isUserIn: boolean;
+    logout: () => void;
+  };
+  const { isUserIn, logout } = useContext(AuthContext) as AuthContextType;
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   return (
     <header className="header">
@@ -27,9 +31,7 @@ const Header = () => {
                 .map((item) => (
                   <ul key={item.id}>
                     <li className="listItem">
-                      <NavLink to={item.path}>
-                        {t(`header.${[item.id]}`)}
-                      </NavLink>
+                      <NavLink to={item.path}>{t(`header.${item.id}`)}</NavLink>
                     </li>
                   </ul>
                 ))}
@@ -57,12 +59,15 @@ const Header = () => {
                 </li>
                 <li
                   className="userMenuItem"
-                  onClick={() => setIsUserMenuOpen(false)}
+                  onClick={() => {
+                    setIsUserMenuOpen(false);
+                    if (logout) logout();
+                  }}
                 >
-                  <Link to={"/"}>
+                  <button className="logoutBtn" onClick={logout}>
                     {t("header.logout")}
                     <MdLogout />
-                  </Link>
+                  </button>
                 </li>
               </ul>
             </div>
@@ -70,7 +75,7 @@ const Header = () => {
             <div className="userArea">
               <Link to={"/login"}>
                 <FaRegUserCircle className="login" />
-                {t("header.login")}
+                Log In
               </Link>
             </div>
           )}

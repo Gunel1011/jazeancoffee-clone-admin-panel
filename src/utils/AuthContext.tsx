@@ -43,7 +43,14 @@ export const Auth = ({ children }: { children: ReactNode }) => {
       getProfile();
     }
   }, []);
-  const globals = { isUserIn, setIsUserIn, user, setUser };
+  const logout = () => {
+    localStorage.removeItem("token");
+    setToken("");
+    setUser(null);
+    setIsUserIn(false);
+    navigate("/login");
+  };
+  const globals = { isUserIn, setIsUserIn, user, setUser, logout };
   return (
     <AuthContext.Provider value={globals}>{children}</AuthContext.Provider>
   );

@@ -6,6 +6,7 @@ interface IEntiponts {
   post_product: string;
   delete_product: string;
   put_user_data: string;
+  put_user_image: string;
   login: string;
 }
 
@@ -14,6 +15,7 @@ const endpoints: IEntiponts = {
   get_single_product: "/products",
   get_user_data: "/users/profile-data",
   put_product: "/products/",
+  put_user_image: "/users/profile/",
   put_user_data: "/users/profile-update",
   post_product: "/products/",
   delete_product: "/products/",

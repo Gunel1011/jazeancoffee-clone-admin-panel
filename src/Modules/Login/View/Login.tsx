@@ -34,9 +34,9 @@ const Login = () => {
       await LoginService.login(data);
       setIsUserIn(true);
       navigation("/");
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
-      showNotification("error", errors.response?.data);
+      showNotification("error", error.response?.data);
     }
   };
   return (

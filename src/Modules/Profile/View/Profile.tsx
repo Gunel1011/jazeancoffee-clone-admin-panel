@@ -6,6 +6,8 @@ import { useTranslation } from "react-i18next";
 const Profile = () => {
   const { t } = useTranslation();
   const { user }: any = useContext(AuthContext);
+
+  
   return (
     <section className="profile">
       <div className="container">

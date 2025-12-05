@@ -5,8 +5,8 @@ import { Outlet, Navigate } from "react-router-dom";
 import { AuthContext } from "../utils/AuthContext";
 
 const ProtectedRouter = () => {
-  const { token } = useContext(AuthContext);
-  return token ? <Outlet /> : <Navigate to="/login" />;
+  const { isUserIn } = useContext(AuthContext) as { isUserIn: boolean };
+  return isUserIn ? <Outlet /> : <Navigate to="/login" />;
 };
 
 export default ProtectedRouter;

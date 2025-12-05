@@ -60,6 +60,15 @@
           display: none;
           flex-direction: column;
           gap: 10px;
+          .logoutBtn {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            border: none;
+            background-color: transparent;
+            color: $pureWhite;
+            font-size: 16px;
+          }
           &.active {
             display: flex;
           }

@@ -30,3 +30,6 @@ export interface IUserRequest {
   isActive: boolean;
   fullName?: string;
 }
+export interface IUserImage {
+  profileImage?: File;
+}

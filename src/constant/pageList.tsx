@@ -15,6 +15,7 @@ interface IPage {
   elemet: ReactNode;
   is_visible: boolean;
   for_header: boolean;
+  for_token: boolean;
 }
 const pageList: IPage[] = [
   {
@@ -24,6 +25,7 @@ const pageList: IPage[] = [
     elemet: <Home />,
     is_visible: true,
     for_header: true,
+    for_token: false,
   },
   {
     id: "coffee",
@@ -32,6 +34,7 @@ const pageList: IPage[] = [
     elemet: <AllCoffee />,
     is_visible: true,
     for_header: true,
+    for_token: true,
   },
   {
     id: "add-coffee",
@@ -40,6 +43,7 @@ const pageList: IPage[] = [
     elemet: <AddNewProduct />,
     is_visible: true,
     for_header: true,
+    for_token: true,
   },
   {
     id: "edit-coffee",
@@ -48,6 +52,7 @@ const pageList: IPage[] = [
     elemet: <EditCoffee />,
     is_visible: true,
     for_header: false,
+    for_token: true,
   },
   {
     id: "profile",
@@ -56,6 +61,7 @@ const pageList: IPage[] = [
     elemet: <Profile />,
     is_visible: true,
     for_header: false,
+    for_token: true,
   },
   {
     id: "profileSetting",
@@ -64,6 +70,7 @@ const pageList: IPage[] = [
     elemet: <ProfileSetting />,
     is_visible: true,
     for_header: false,
+    for_token: true,
   },
   {
     id: "login",
@@ -72,6 +79,7 @@ const pageList: IPage[] = [
     elemet: <Login />,
     is_visible: true,
     for_header: false,
+    for_token: false,
   },
   {
     id: "not_found",
@@ -80,6 +88,7 @@ const pageList: IPage[] = [
     elemet: <NotFound />,
     is_visible: true,
     for_header: false,
+    for_token: true,
   },
 ];
 

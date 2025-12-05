@@ -63,10 +63,6 @@ const Footer = () => {
               <option value="az">Azərbaycanca</option>
               <option value="tr">Türkçe</option>
             </select>
-            <label className="switch">
-              <input type="checkbox" />
-              <span className="slider"></span>
-            </label>
           </div>
         </div>
       </div>

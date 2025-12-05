@@ -66,10 +66,9 @@ const EditCoffee = () => {
       formData.append("price", data.price.toString());
       if (image) {
         formData.append("productImage", image);
-        // @ts-ignore
-        const res = await ShopService.editCoffee(formData, details._id);
-        console.log(res);
       }
+      const res = await ShopService.editCoffee(formData, details._id);
+      console.log(res);
       showNotification("success");
       navigation(-1);
     } catch (errors: any) {
@@ -136,9 +135,6 @@ const EditCoffee = () => {
                   id="cImg"
                   onChange={handleSeletctImage}
                 />
-                {/* <div className="previewImage">
-                    <img src={preview} alt="old-img" />
-                  </div> */}
                 <div className="previewImage">
                   <img src={preview} alt="new-img" />
                 </div>

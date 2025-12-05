@@ -8,6 +8,7 @@ import { ProfileService } from "../Service/ProfileService";
 import showNotification from "../../../utils/showNotification";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import Loading from "../../../components/Loading";
 
 const userShema = object({
   name: string().trim().required(),
@@ -23,6 +24,7 @@ const ProfileSetting = () => {
   const { user }: any = useContext(AuthContext);
   const [image, setImage] = useState("");
   const [preview, setPreview] = useState("");
+  const [loading, setLoading] = useState(false);
   const [userRole, setUserRole] = useState(user?.role || userRoleEnum.USER);
   const navigation = useNavigate();
   const {
@@ -45,17 +47,33 @@ const ProfileSetting = () => {
   const handleSeletctImage = (e: any) => {
     const file = e.target.files[0];
     setImage(file);
-    setPreview(URL.createObjectURL(file));
+    setPreview(URL?.createObjectURL(file));
   };
+
   const onSubmit: SubmitHandler<IUserRequest> = async (data) => {
+    setLoading(true);
     try {
       const res = await ProfileService.editUserData(data);
+      setPreview(res.productImage);
       showNotification("success", res?.message);
+      const formData = new FormData();
+      if (image) {
+        formData.append("profileImage", image);
+        const resImage = await ProfileService.changeProfileImage(formData);
+        console.log(resImage);
+      }
       navigation("/profile");
+      window.location.reload();
+      console.log(data);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <section className="editCoffee">
       <div className="container">
@@ -181,7 +199,7 @@ const ProfileSetting = () => {
               <div className="user-box">
                 <input
                   type="file"
-                  name="productImage"
+                  name="prfileImage"
                   id="cImg"
                   onChange={handleSeletctImage}
                 />
@@ -191,7 +209,6 @@ const ProfileSetting = () => {
                   </div>
                 )}
               </div>
-
               <div className="btn">
                 <button>
                   {t("setting.updateProfile")}

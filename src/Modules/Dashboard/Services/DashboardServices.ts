@@ -13,18 +13,19 @@ export class ShopService {
     return await ShopProvider.getCoffeeDetails(id).then((res) => {
       return {
         ...res.data,
-        productImage: import.meta.env.VITE_IMAGE_URL + '/' + res.data.productImage,
+        productImage:
+          import.meta.env.VITE_IMAGE_URL + "/" + res.data.productImage,
       };
     });
   }
 
-  static async editCoffee(payload: IProductRequest, id: string) {
+  static async editCoffee(payload: FormData, id: string) {
     return await ShopProvider.putCoffeeDetails(payload, id).then((res) => {
       return res.data;
     });
   }
 
-  static async addNewCoffee(payload: IProductRequest) {
+  static async addNewCoffee(payload: FormData) {
     return await ShopProvider.postNewCoffee(payload).then((res) => {
       return res.data;
     });

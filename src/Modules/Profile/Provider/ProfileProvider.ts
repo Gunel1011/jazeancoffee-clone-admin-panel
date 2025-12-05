@@ -9,3 +9,6 @@ export const getUserData = async () => {
 export const putUserData = async (payload: IUserRequest) => {
   return await $axios.put($api("put_user_data"), payload);
 };
+export const putUserImage = async (payload: FormData) => {
+  return await $axios.put($api("put_user_image"), payload);
+};

@@ -48,10 +48,9 @@ const AddNewProduct = () => {
       formData.append("price", data.price.toString());
       if (image) {
         formData.append("productImage", image);
-        // @ts-ignore
-        const res = await ShopService.addNewCoffee(formData);
-        console.log(res);
       }
+      const res = await ShopService.addNewCoffee(formData);
+      console.log(res);
       showNotification("success");
       navigation("/coffee");
     } catch (errors: any) {
