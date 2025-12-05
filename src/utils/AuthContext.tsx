@@ -2,7 +2,16 @@ import { createContext, useEffect, useState, type ReactNode } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ProfileService } from "../Modules/Profile/Service/ProfileService";
 import type { IUser } from "../Modules/Profile/Models/ProfileModels";
-export const AuthContext = createContext({});
+
+interface IAuthContext {
+  isUserIn: boolean;
+  setIsUserIn: (value: boolean) => void;
+  user: IUser | null;
+  setUser: (user: IUser | null) => void;
+  logout: () => void;
+}
+
+export const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
 export const Auth = ({ children }: { children: ReactNode }) => {
   const [token, setToken] = useState("");

@@ -1,4 +1,3 @@
-import type { IProductRequest } from "../Models/DashboardModels";
 import * as ShopProvider from "../Provider/DashboardProvider";
 export class ShopService {
   static async productList() {

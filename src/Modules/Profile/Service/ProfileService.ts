@@ -1,6 +1,5 @@
 import type { IUserRequest } from "../Models/ProfileModels";
 import * as ProfileProvider from "../Provider/ProfileProvider";
-import $axios from "../../../api/axiosInterceptor";
 
 export class ProfileService {
   static async getUserData() {
