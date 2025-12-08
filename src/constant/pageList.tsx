@@ -7,6 +7,7 @@ import Login from "../Modules/Login/View/Login";
 import AddNewProduct from "../Modules/Dashboard/View/AddNewProduct";
 import Profile from "../Modules/Profile/View/Profile";
 import ProfileSetting from "../Modules/Profile/View/ProfileSetting";
+import AddNewUser from "../Modules/Profile/View/AddNewUser";
 
 interface IPage {
   id: string;
@@ -41,6 +42,15 @@ const pageList: IPage[] = [
     title: "Add new coffee",
     path: "/add-coffee",
     elemet: <AddNewProduct />,
+    is_visible: true,
+    for_header: true,
+    for_token: true,
+  },
+  {
+    id: "add-user",
+    title: "Add new user",
+    path: "/add-user",
+    elemet: <AddNewUser />,
     is_visible: true,
     for_header: true,
     for_token: true,

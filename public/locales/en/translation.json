@@ -3,6 +3,7 @@
     "home": "Home",
     "coffee": "Coffee",
     "add-coffee": "Add new coffee",
+    "add-user": "Add new user",
     "profile": "Profile",
     "setting": "Setting",
     "logout": "Log out"
@@ -48,5 +49,17 @@
     "user": "User",
     "isActive": "Is active ?",
     "updateProfile": "UPDATE PROFILE"
+  },
+  "addNewUser": {
+    "profileSetting": "Add new user",
+    "name": "Name",
+    "age": "Age",
+    "amail": "Email",
+    "ahone": "Phone",
+    "address": "Address",
+    "admin": "Admin",
+    "user": "User",
+    "isActive": "Is active ?",
+    "updateProfile": "ADD NEW USER"
   }
 }

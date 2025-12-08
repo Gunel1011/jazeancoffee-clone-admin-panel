@@ -21,3 +21,5 @@ export const postNewCoffee = async (payload: FormData) => {
 export const deleteCoffee = async (id: string) => {
   return $axios.delete($api("delete_product") + id);
 };
+
+

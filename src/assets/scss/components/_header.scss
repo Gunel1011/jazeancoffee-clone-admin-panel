@@ -1,85 +1,129 @@
 @use "../variables" as *;
-.header {
-  background-color: $brown;
-  padding: 5px 0;
-  height: 80px;
-  position: fixed;
-  width: 100%;
-  box-shadow: 1px 0 20px 1px $dimWhite;
-  z-index: 9999;
-  .container {
-    .row {
-      justify-content: space-between;
-      align-items: center;
-      .logo {
-        width: 100px;
-        height: 70px;
-      }
-      .navBar {
-        .navList {
-          display: flex;
-          gap: 20px;
-          .listItem {
-            a {
-              font-size: 18px;
-              color: $pureWhite;
-              &:hover {
-                opacity: 0.6;
+.headerTop {
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    display: none;
+    z-index: 9000;
+    transition: opacity 0.3s ease;
+  }
+  .overlay.activeMenu {
+    display: block;
+  }
+  .menu {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 10000;
+    transition: left 0.3s ease;
+    &.activeMenuIcon {
+      left: 90px;
+    }
+    .menuIcon {
+      color: $pureWhite;
+      font-size: 30px;
+      cursor: pointer;
+    }
+  }
+  .header {
+    background-color: $brown;
+    padding: 5px 0;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: -120px;
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    transition: left 0.3s ease;
+    z-index: 9999;
+    &.activeMenu {
+      left: 0;
+    }
+    .container {
+      .row {
+        margin-top: 10px;
+        width: 120px;
+        flex-direction: column;
+        gap: 120px;
+        justify-content: center;
+
+        .logo {
+          width: 100px;
+          height: 70px;
+        }
+        .navBar {
+          .navList {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+            .listItem {
+              a {
+                font-size: 18px;
+                color: $pureWhite;
+                &:hover {
+                  opacity: 0.6;
+                }
               }
             }
           }
         }
-      }
-      .userArea {
-        .login {
-          color: $pureWhite;
-          width: 30px;
-          height: 30px;
-          cursor: pointer;
-        }
-        a {
-          color: $pureWhite;
-          display: flex;
-          align-items: center;
-          gap: 10px;
-        }
-      }
-      .avatar {
-        position: relative;
-        .loginIcon {
-          color: $pureWhite;
-          font-size: 30px;
-        }
-        .userMenu {
-          background-color: $bgNotFound;
-          padding: 20px;
-          position: absolute;
-          top: 50px;
-          right: -50px;
-          border-radius: 8px;
-          display: none;
-          flex-direction: column;
-          gap: 10px;
-          .logoutBtn {
+        .userArea {
+          .login {
+            color: $pureWhite;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+          }
+          a {
+            color: $pureWhite;
             display: flex;
             align-items: center;
-            gap: 4px;
-            border: none;
-            background-color: transparent;
+            gap: 10px;
+          }
+        }
+        .avatar {
+          position: relative;
+          .loginIcon {
             color: $pureWhite;
-            font-size: 16px;
+            font-size: 30px;
           }
-          &.active {
-            display: flex;
-          }
-          .userMenuItem {
-            a {
-              color: $pureWhite;
+          .userMenu {
+            background-color: $bgNotFound;
+            padding: 20px;
+            position: absolute;
+            top: -60px;
+            right: -70px;
+            border-radius: 8px;
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            .logoutBtn {
               display: flex;
-              width: 100px;
-              gap: 10px;
-              &:hover {
-                color: $softOrange;
+              align-items: center;
+              gap: 4px;
+              border: none;
+              background-color: transparent;
+              color: $pureWhite;
+              font-size: 16px;
+            }
+            &.active {
+              display: flex;
+            }
+            .userMenuItem {
+              a {
+                color: $pureWhite;
+                display: flex;
+                width: 100px;
+                gap: 10px;
+                &:hover {
+                  color: $softOrange;
+                }
               }
             }
           }

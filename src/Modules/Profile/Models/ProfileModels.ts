@@ -14,7 +14,6 @@ export interface IUser {
   age: number;
   registerDate: string;
   isActive: boolean;
-  fullName: string;
 }
 
 export interface IUserRequest {
@@ -28,7 +27,13 @@ export interface IUserRequest {
   address: string;
   age: number;
   isActive: boolean;
-  fullName?: string;
+}
+export interface IUserNew {
+  name: "";
+  surname: "";
+  email: "";
+  password: "";
+  role?: userRoleEnum;
 }
 export interface IUserImage {
   profileImage?: File;

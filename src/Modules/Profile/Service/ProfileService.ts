@@ -1,4 +1,4 @@
-import type { IUserRequest } from "../Models/ProfileModels";
+import type { IUserNew, IUserRequest } from "../Models/ProfileModels";
 import * as ProfileProvider from "../Provider/ProfileProvider";
 
 export class ProfileService {
@@ -25,6 +25,12 @@ export class ProfileService {
           res.data.profileImage
         }`,
       };
+    });
+  }
+
+  static async addNewUser(payload: IUserNew) {
+    return await ProfileProvider.postNewUser(payload).then((res) => {
+      return res.data;
     });
   }
 }

@@ -14,3 +14,5 @@ export interface IProductRequest {
   price: number;
   productImage?: File;
 }
+
+

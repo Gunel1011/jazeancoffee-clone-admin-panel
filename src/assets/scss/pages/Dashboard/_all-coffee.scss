@@ -1,14 +1,17 @@
 @use "../../variables" as *;
 .allCoffe {
-  padding: 120px 0;
+  padding: 50px 0;
   background-color: $brown;
+  background: linear-gradient(#000000e6),
+    url("../../../img/bean.webp") center/contain;
+  height: fit-content;
   .container {
     .row {
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
       gap: 20px;
-      .coffeeTitle{
+      .coffeeTitle {
         color: $pureWhite;
       }
       .table,

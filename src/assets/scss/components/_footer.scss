@@ -4,7 +4,8 @@
   padding: 16px 0;
   background-color: $brown;
   height: 70px;
-  box-shadow: 1px 0 20px 1px $dimWhite;
+  position: relative;
+  z-index: 99999;
   .container {
     .row {
       justify-content: space-between;

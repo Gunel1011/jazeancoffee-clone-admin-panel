@@ -3,6 +3,7 @@
     "home": "Ana sayfa",
     "coffee": "Kahve",
     "add-coffee": "Yeni kahve ekle",
+    "add-user": "Yeni user ekle",
     "profile": "Profil",
     "setting": "Ayarlar",
     "logout": "Çıkış yap"
@@ -48,5 +49,17 @@
     "user": "Kullanıcı",
     "isActive": "Aktif mi?",
     "updateProfile": "Profili güncelle"
+  },
+  "addNewUser": {
+    "profileSetting": "Yeni kullanıcı ekle",
+    "name": "Ad",
+    "age": "Yaş",
+    "amail": "E-posta",
+    "ahone": "Telefon",
+    "address": "Adres",
+    "admin": "Admin",
+    "user": "Kullanıcı",
+    "isActive": "Aktif mi?",
+    "updateProfile": "YENI USER EKLE"
   }
 }

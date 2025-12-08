@@ -7,6 +7,7 @@ interface IEntiponts {
   delete_product: string;
   put_user_data: string;
   put_user_image: string;
+  post_new_user: string;
   login: string;
 }
 
@@ -18,6 +19,7 @@ const endpoints: IEntiponts = {
   put_user_image: "/users/profile/",
   put_user_data: "/users/profile-update",
   post_product: "/products/",
+  post_new_user: "/register",
   delete_product: "/products/",
   login: "/login",
 };

@@ -41,6 +41,7 @@ const ProfileSetting = () => {
       address: user?.address || "",
       age: user?.age || 0,
       isActive: user?.isActive || false,
+      role: userRole || userRoleEnum.USER,
     },
   });
 
@@ -201,6 +202,7 @@ const ProfileSetting = () => {
                   type="file"
                   name="prfileImage"
                   id="cImg"
+                  accept=".png, .jpg, .jpeg"
                   onChange={handleSeletctImage}
                 />
                 {preview && (

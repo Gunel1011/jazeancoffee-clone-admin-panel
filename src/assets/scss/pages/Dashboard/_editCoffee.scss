@@ -1,7 +1,9 @@
 @use "../../variables" as *;
 .editCoffee {
   width: 100%;
-  padding: 100px 0;
+  padding: 40px 0;
+  background:linear-gradient(#000000a8), url("../../../img/bean.webp")center/cover;
+  height: fit-content;
   .container {
     .row {
       flex-direction: column;
