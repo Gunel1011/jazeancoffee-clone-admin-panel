@@ -1,13 +1,16 @@
 @use "../../variables" as *;
+
 .home {
-  background: linear-gradient(#00000097),
-    url(../../../img/Asset-24.png) center/cover;
+  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+    url("/src/assets/img/Asset-24.png") center/cover no-repeat;
   height: calc(100vh - 70px);
+
   .container {
     .row {
       justify-content: center;
       align-items: center;
       height: calc(100vh - 100px);
+
       .homeTitle {
         font-size: 30px;
         color: $brown;

@@ -8,6 +8,7 @@ import AddNewProduct from "../Modules/Dashboard/View/AddNewProduct";
 import Profile from "../Modules/Profile/View/Profile";
 import ProfileSetting from "../Modules/Profile/View/ProfileSetting";
 import AddNewUser from "../Modules/Profile/View/AddNewUser";
+import Users from "../Modules/Users/View/Users";
 
 interface IPage {
   id: string;
@@ -56,6 +57,15 @@ const pageList: IPage[] = [
     for_token: true,
   },
   {
+    id: "all-user",
+    title: "All new user",
+    path: "/all-user",
+    elemet: <Users />,
+    is_visible: true,
+    for_header: true,
+    for_token: true,
+  },
+  {
     id: "edit-coffee",
     title: "Edit Coffee",
     path: "/edit-coffee/:id",
@@ -70,7 +80,7 @@ const pageList: IPage[] = [
     path: "/profile",
     elemet: <Profile />,
     is_visible: true,
-    for_header: false,
+    for_header: true,
     for_token: true,
   },
   {
@@ -79,7 +89,7 @@ const pageList: IPage[] = [
     path: "/setting",
     elemet: <ProfileSetting />,
     is_visible: true,
-    for_header: false,
+    for_header: true,
     for_token: true,
   },
   {

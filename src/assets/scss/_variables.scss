@@ -1,10 +1,27 @@
-$brown: #180d0a;
-$bgNotFound: #3f1509;
-$bg: #5b3a2c92;
-$pureWhite: #fffffff0;
-$dimWhite: #ffffff8c;
-$softOrange: #ce8339;
-$gray: #7a8395;
-$black: #0a0a0a;
-$green: green;
-$red: red;
+$custom-rust: #b25d27;
+$custom-beige: #e9d3c2;
+$custom-gold: #cbad6d;
+$custom-white: #ffffff;
+$custom-text: #3e2723;
+$custom-hover: #dcc8b6;
+
+
+$bg: $custom-beige;
+$secondaryBg: $custom-white;
+$softOrange: $custom-rust;
+
+
+$white: #ffffff;
+$darkBrown: $custom-text;
+$gray: #7D6E68;
+$black: #1a0f0a;
+$green: #27ae60;
+$red: #c0392b;
+
+
+$mainText: $darkBrown;
+$pureWhite: $white;
+$dimWhite: rgba($white, 0.8);
+$hover-bg: $custom-hover;
+$brown: $custom-rust;
+$bgNotFound: $custom-beige;

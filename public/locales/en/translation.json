@@ -6,7 +6,9 @@
     "add-user": "Add new user",
     "profile": "Profile",
     "setting": "Setting",
-    "logout": "Log out"
+    "logout": "Log out",
+    "all-user": "All Users",
+    "profileSetting": "Profile Setting"
   },
   "footer": {
     "follow": "follow us"
@@ -32,7 +34,7 @@
   "profile": {
     "profile": "Profile",
     "name": "Name",
-    "surname":"surname",
+    "surname": "surname",
     "age": "Age",
     "email": "Email",
     "phone": "Phone",
@@ -48,7 +50,14 @@
     "admin": "Admin",
     "user": "User",
     "isActive": "Is active ?",
-    "updateProfile": "UPDATE PROFILE"
+    "updateProfile": "UPDATE PROFILE",
+    "changePassword": "Change Password",
+    "oldPassword": "Old Password",
+    "newPassword": "New Password",
+    "deleteAccount": "Delete Account",
+    "deleteAccountWarning": "Warning: This action is irreversible. You will receive an OTP to confirm.",
+    "enterOTP": "Enter OTP Code",
+    "confirmDelete": "Confirm Delete"
   },
   "addNewUser": {
     "profileSetting": "Add new user",

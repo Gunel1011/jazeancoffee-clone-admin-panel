@@ -1,6 +1,6 @@
 @use "../../variables" as *;
 
-.allCoffe {
+.users {
   padding: 30px;
   background-color: transparent;
   width: 100%;
@@ -12,7 +12,7 @@
       flex-direction: column;
       gap: 20px;
 
-      .coffeeTitle {
+      .usersTitle {
         color: $softOrange;
         font-size: 24px;
         font-weight: 600;
@@ -20,6 +20,7 @@
         padding-bottom: 10px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       }
+
 
       .table {
         width: 100%;
@@ -68,37 +69,61 @@
                 border-bottom-right-radius: 8px;
               }
 
-              &.carImg {
-                width: 80px;
-                height: 80px;
 
-                img {
-                  width: 100%;
-                  height: 100%;
-                  object-fit: cover;
-                  border-radius: 8px;
+              .status {
+                padding: 5px 10px;
+                border-radius: 20px;
+                font-size: 12px;
+                font-weight: 600;
+
+                &.active {
+                  background-color: rgba(76, 175, 80, 0.2);
+                  color: #4caf50;
+                }
+
+                &.inactive {
+                  background-color: rgba(244, 67, 54, 0.2);
+                  color: #f44336;
                 }
               }
 
-              &.edit {
+
+              &.actions {
                 display: flex;
-                align-items: center;
-                gap: 15px;
+                gap: 10px;
 
-                a,
-                svg {
-                  font-size: 18px;
-                  color: $gray;
-                  transition: color 0.3s;
+                .action-btn {
+                  background: transparent;
+                  border: none;
                   cursor: pointer;
+                  padding: 8px;
+                  border-radius: 50%;
+                  transition: all 0.3s ease;
+                  font-size: 16px;
 
-                  &:hover {
+                  &.role {
                     color: $softOrange;
-                  }
-                }
 
-                svg:last-child:hover {
-                  color: $red;
+                    &:hover {
+                      background-color: rgba($softOrange, 0.1);
+                    }
+                  }
+
+                  &.deactivate {
+                    color: #f44336;
+
+                    &:hover {
+                      background-color: rgba(244, 67, 54, 0.1);
+                    }
+                  }
+
+                  &.activate {
+                    color: #4caf50;
+
+                    &:hover {
+                      background-color: rgba(76, 175, 80, 0.1);
+                    }
+                  }
                 }
               }
             }

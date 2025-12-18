@@ -2,7 +2,7 @@
 @use "../scss/base";
 
 // components
-@use "../scss/components/header";
+@use "../scss/components/sidebar";
 @use "../scss/components/footer";
 @use "../scss/components/loading";
 @use "../scss/components/notFound";
@@ -13,4 +13,5 @@
 @use "./pages/Dashboard/editCoffee";
 @use "../scss/pages/Login/login";
 @use "../scss/pages/Profile/profile";
-
+@use "../scss/pages/Users/users";
+@use "../scss/components/layout";

@@ -17,9 +17,11 @@ const AllCoffee = () => {
     setLoading(true);
     try {
       const res = await ShopService.productList();
-      setProduct(res);
-    } catch (error) {
-      alert(error);
+      // Remove duplicates based on _id
+      const uniqueProducts = res.filter((v, i, a) => a.findIndex(t => (t._id === v._id)) === i);
+      setProduct(uniqueProducts);
+    } catch (error: any) {
+      showNotification("error", error.response?.data || "Failed to load products");
     } finally {
       setLoading(false);
     }
@@ -35,8 +37,7 @@ const AllCoffee = () => {
       getData();
       showNotification("success");
     } catch (error: any) {
-      console.log(error);
-      showNotification("error", error.response?.data);
+      showNotification("error", error.response?.data || "Remove failed");
     } finally {
       setLoading(false);
     }

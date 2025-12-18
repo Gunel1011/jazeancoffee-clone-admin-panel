@@ -49,12 +49,12 @@ const AddNewProduct = () => {
       if (image) {
         formData.append("productImage", image);
       }
-      const res = await ShopService.addNewCoffee(formData);
-      console.log(res);
+      await ShopService.addNewCoffee(formData);
+
       showNotification("success");
       navigation("/coffee");
     } catch (errors: any) {
-      console.log(errors);
+
       showNotification("error", errors.response?.data);
     } finally {
       setLoading(false);

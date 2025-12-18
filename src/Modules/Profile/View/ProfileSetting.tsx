@@ -19,20 +19,20 @@ const userShema = object({
   age: number().required(),
   isActive: boolean().required(),
 });
+
 const ProfileSetting = () => {
   const { t } = useTranslation();
-  const { user }: any = useContext(AuthContext);
-  const [image, setImage] = useState("");
+  const { user, refreshProfile }: any = useContext(AuthContext);
+  const [image, setImage] = useState<any>("");
   const [preview, setPreview] = useState("");
   const [loading, setLoading] = useState(false);
-  const [userRole, setUserRole] = useState(user?.role || userRoleEnum.USER);
   const navigation = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<IUserRequest>({
-    resolver: yupResolver(userShema),
+    resolver: yupResolver(userShema) as any,
     values: {
       name: user?.name || "",
       surname: user?.surname || "",
@@ -41,7 +41,7 @@ const ProfileSetting = () => {
       address: user?.address || "",
       age: user?.age || 0,
       isActive: user?.isActive || false,
-      role: userRole || userRoleEnum.USER,
+      role: user?.role || userRoleEnum.USER,
     },
   });
 
@@ -55,26 +55,25 @@ const ProfileSetting = () => {
     setLoading(true);
     try {
       const res = await ProfileService.editUserData(data);
-      setPreview(res.productImage);
-      showNotification("success", res?.message);
-      const formData = new FormData();
       if (image) {
+        const formData = new FormData();
         formData.append("profileImage", image);
-        const resImage = await ProfileService.changeProfileImage(formData);
-        console.log(resImage);
+        await ProfileService.changeProfileImage(formData);
       }
+      await refreshProfile();
+      showNotification("success", res?.message || "Profile updated");
       navigation("/profile");
-      window.location.reload();
-      console.log(data);
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      showNotification("error", error.response?.data || "Update failed");
     } finally {
       setLoading(false);
     }
   };
+
   if (loading) {
     return <Loading />;
   }
+
   return (
     <section className="editCoffee">
       <div className="container">
@@ -82,7 +81,6 @@ const ProfileSetting = () => {
           <h2 className="titleEdit">{t("setting.profileSetting")}</h2>
           <div className="login-box">
             <form onSubmit={handleSubmit(onSubmit)}>
-              {/* name  */}
               <div className="user-box">
                 <input
                   className={errors.name ? "error" : ""}
@@ -90,13 +88,11 @@ const ProfileSetting = () => {
                   {...register("name")}
                 />
                 <label className={errors.name ? "error" : ""}>
-                  {t("setting:name")}
+                  {t("profile.name")}
                 </label>
               </div>
-              {errors.name && (
-                <span className="error">{errors.name?.message}</span>
-              )}
-              {/* surname */}
+              {errors.name && <span className="error">{errors.name?.message}</span>}
+
               <div className="user-box">
                 <input
                   className={errors.surname ? "error" : ""}
@@ -104,13 +100,11 @@ const ProfileSetting = () => {
                   {...register("surname")}
                 />
                 <label className={errors.surname ? "error" : ""}>
-                  {t("setting:surname")}
+                  {t("profile.surname")}
                 </label>
               </div>
-              {errors.surname && (
-                <span className="error">{errors.surname?.message}</span>
-              )}
-              {/* age */}
+              {errors.surname && <span className="error">{errors.surname?.message}</span>}
+
               <div className="user-box">
                 <input
                   className={errors.age ? "error" : ""}
@@ -118,41 +112,35 @@ const ProfileSetting = () => {
                   {...register("age")}
                 />
                 <label className={errors.age ? "error" : ""}>
-                  {t("setting:age")}
+                  {t("profile.age")}
                 </label>
               </div>
-              {errors.age && (
-                <span className="error">{errors.age?.message}</span>
-              )}
-              {/* Phone  */}
+              {errors.age && <span className="error">{errors.age?.message}</span>}
+
               <div className="user-box">
                 <input
                   className={errors.phone ? "error" : ""}
                   type="text"
                   {...register("phone")}
                 />
-                <label className={errors.age ? "error" : ""}>
-                  {t("setting:phone")}
+                <label className={errors.phone ? "error" : ""}>
+                  {t("profile.phone")}
                 </label>
               </div>
-              {errors.phone && (
-                <span className="error">{errors.phone?.message}</span>
-              )}
-              {/* email  */}
+              {errors.phone && <span className="error">{errors.phone?.message}</span>}
+
               <div className="user-box">
                 <input
                   className={errors.email ? "error" : ""}
                   type="text"
                   {...register("email")}
                 />
-                <label className={errors.age ? "error" : ""}>
-                  {t("setting:email")}
+                <label className={errors.email ? "error" : ""}>
+                  {t("profile.email")}
                 </label>
               </div>
-              {errors.email && (
-                <span className="error">{errors.email?.message}</span>
-              )}
-              {/* address  */}
+              {errors.email && <span className="error">{errors.email?.message}</span>}
+
               <div className="user-box">
                 <input
                   className={errors.address ? "error" : ""}
@@ -160,47 +148,15 @@ const ProfileSetting = () => {
                   {...register("address")}
                 />
                 <label className={errors.address ? "error" : ""}>
-                  {t("setting.address")}
+                  {t("profile.address")}
                 </label>
               </div>
-              {errors.address && (
-                <span className="error">{errors.address?.message}</span>
-              )}
-              {/* radio  */}
-              <div className="userBox">
-                <div className="roleBox">
-                  <label htmlFor="roleAdmin" style={{ color: "#fff" }}>
-                    {t("setting.admin")}
-                  </label>
-                  <input
-                    type="radio"
-                    name="role"
-                    id="roleAdmin"
-                    value={userRole}
-                    onChange={() => setUserRole(userRoleEnum.ADMIN)}
-                  />
-                </div>
-                <div className="roleBox">
-                  <label htmlFor="role" style={{ color: "#fff" }}>
-                    {t("setting.user")}
-                  </label>
-                  <input
-                    type="radio"
-                    name="role"
-                    id="role"
-                    value={userRole}
-                    onChange={() => setUserRole(userRoleEnum.USER)}
-                  />
-                </div>
-              </div>
-              <div className="user-box">
-                <input type="checkbox" {...register("isActive")} />
-                <label>{t("setting.isActive")}</label>
-              </div>
+              {errors.address && <span className="error">{errors.address?.message}</span>}
+
               <div className="user-box">
                 <input
                   type="file"
-                  name="prfileImage"
+                  name="profileImage"
                   id="cImg"
                   accept=".png, .jpg, .jpeg"
                   onChange={handleSeletctImage}
@@ -212,8 +168,44 @@ const ProfileSetting = () => {
                 )}
               </div>
               <div className="btn">
-                <button>
+                <button type="submit">
                   {t("setting.updateProfile")}
+                  <span></span>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div className="login-box" style={{ marginTop: "30px" }}>
+            <h2 className="titleEdit" style={{ fontSize: "20px", marginBottom: "20px" }}>{t("addNewUser.changePassword")}</h2>
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              const form = e.target as any;
+              const oldPass = form.oldPassword.value;
+              const newPass = form.newPassword.value;
+              if (!oldPass || !newPass) return showNotification("error", "Please fill all fields");
+              setLoading(true);
+              ProfileService.changePassword(oldPass, newPass)
+                .then(() => {
+                  showNotification("success", "Password changed successfully");
+                  form.reset();
+                })
+                .catch((err: any) => {
+                  showNotification("error", err.response?.data || "Failed to change password");
+                })
+                .finally(() => setLoading(false));
+            }}>
+              <div className="user-box">
+                <input type="password" name="oldPassword" required />
+                <label>{t("addNewUser.oldPassword")}</label>
+              </div>
+              <div className="user-box">
+                <input type="password" name="newPassword" required />
+                <label>{t("addNewUser.newPassword")}</label>
+              </div>
+              <div className="btn">
+                <button type="submit">
+                  {t("addNewUser.changePassword")}
                   <span></span>
                 </button>
               </div>

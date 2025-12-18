@@ -3,7 +3,8 @@
     "home": "Ana səhifə",
     "coffee": "Kofe",
     "add-coffee": "Yeni kofe əlavə et",
-    "add-user": "Yeni İstifadəçi əlavə et",
+    "all-user": "Bütün İstifadəçilər",
+    "profileSetting": "Profil Ayarları",
     "profile": "Profil",
     "setting": "Ayarlar",
     "logout": "Çıxış"
@@ -15,7 +16,7 @@
     "welcomeJazeanDashboard": "Jazean idarə panelinə xoş gəlmisiniz"
   },
   "coffee": {
-    "allCoffeeList": "Bütün kofelərin siyahısı",
+    "allCoffeeList": "Bütün kofelerin siyahısı",
     "cofferImage": "Kofe şəkli",
     "coffeeName": "Kofe adı",
     "coffeeDetails": "Kofe detalları",
@@ -48,6 +49,24 @@
     "admin": "Admin",
     "user": "İstifadəçi",
     "isActive": "Aktivdir?",
-    "updateProfile": "YENI ISTIFADƏCİ ELAVƏ ET"
+    "updateProfile": "YENI ISTIFADƏCİ ELAVƏ ET",
+    "changePassword": "Şifrəni dəyiş",
+    "oldPassword": "Köhnə şifrə",
+    "newPassword": "Yeni şifrə",
+    "deleteAccount": "Hesabı Sil",
+    "deleteAccountWarning": "Xəbərdarlıq: Bu əməliyyat geri qaytarıla bilməz. Təsdiq üçün OTP kodu göndəriləcək.",
+    "enterOTP": "OTP Kodunu daxil edin",
+    "confirmDelete": "Silməni təsdiqlə"
+  },
+  "alert": {
+    "areYouSure": "Əminsiniz?",
+    "deleteWarning": "Bu əməliyyat geri qaytarıla bilməz!",
+    "confirmDelete": "Bəli, sil!",
+    "cancel": "Ləğv et",
+    "deleted": "Silindi!",
+    "userDeleted": "İstifadəçi uğurla silindi.",
+    "roleChange": "Rolu dəyişmək istədiyinizə əminsiniz?",
+    "statusChange": "Statusu dəyişmək istədiyinizə əminsiniz?",
+    "yes": "Bəli"
   }
 }

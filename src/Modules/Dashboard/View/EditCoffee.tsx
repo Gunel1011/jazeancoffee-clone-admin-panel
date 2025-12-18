@@ -43,7 +43,7 @@ const EditCoffee = () => {
       setDetails(res);
       setPreview(res.productImage);
     } catch (error) {
-      console.log(error);
+
     } finally {
       setLoading(false);
     }
@@ -67,12 +67,12 @@ const EditCoffee = () => {
       if (image) {
         formData.append("productImage", image);
       }
-      const res = await ShopService.editCoffee(formData, details._id);
-      console.log(res);
+      await ShopService.editCoffee(formData, details._id);
+
       showNotification("success");
       navigation(-1);
     } catch (errors: any) {
-      console.log(errors);
+
       showNotification("error", errors.response?.data);
     } finally {
       setLoading(false);

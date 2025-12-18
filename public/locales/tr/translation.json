@@ -6,7 +6,9 @@
     "add-user": "Yeni user ekle",
     "profile": "Profil",
     "setting": "Ayarlar",
-    "logout": "Çıkış yap"
+    "logout": "Çıkış yap",
+    "all-user": "Tüm Kullanıcılar",
+    "profileSetting": "Profil Ayarları"
   },
   "footer": {
     "follow": "Bizi takip edin"
@@ -48,7 +50,14 @@
     "admin": "Admin",
     "user": "Kullanıcı",
     "isActive": "Aktif mi?",
-    "updateProfile": "Profili güncelle"
+    "updateProfile": "Profili güncelle",
+    "changePassword": "Şifreyi Değiştir",
+    "oldPassword": "Eski Şifre",
+    "newPassword": "Yeni Şifre",
+    "deleteAccount": "Hesabı Sil",
+    "deleteAccountWarning": "Uyarı: Bu işlem geri alınamaz. Onay için OTP alacaksınız.",
+    "enterOTP": "OTP Kodunu Girin",
+    "confirmDelete": "Silmeyi Onayla"
   },
   "addNewUser": {
     "profileSetting": "Yeni kullanıcı ekle",

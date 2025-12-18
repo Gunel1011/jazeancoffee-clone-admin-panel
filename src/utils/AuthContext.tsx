@@ -9,6 +9,7 @@ interface IAuthContext {
   user: IUser | null;
   setUser: (user: IUser | null) => void;
   logout: () => void;
+  refreshProfile: () => Promise<void>;
 }
 
 export const AuthContext = createContext<IAuthContext>({} as IAuthContext);
@@ -33,25 +34,28 @@ export const Auth = ({ children }: { children: ReactNode }) => {
       setIsUserIn(false);
     }
   };
+
+  const refreshProfile = async () => {
+    try {
+      const res = await ProfileService.getUserData();
+      setUser(res);
+    } catch (error) {
+      // Failed to get profile
+    }
+  };
+
   useEffect(() => {
     if (!token) {
       chekToken();
     }
   }, []);
 
-  const getProfile = async () => {
-    try {
-      const res = await ProfileService.getUserData();
-      setUser(res);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   useEffect(() => {
-    if (!user) {
-      getProfile();
+    if (!user && isUserIn) {
+      refreshProfile();
     }
-  }, []);
+  }, [isUserIn]);
+
   const logout = () => {
     localStorage.removeItem("token");
     setToken("");
@@ -59,7 +63,8 @@ export const Auth = ({ children }: { children: ReactNode }) => {
     setIsUserIn(false);
     navigate("/login");
   };
-  const globals = { isUserIn, setIsUserIn, user, setUser, logout };
+
+  const globals = { isUserIn, setIsUserIn, user, setUser, logout, refreshProfile };
   return (
     <AuthContext.Provider value={globals}>{children}</AuthContext.Provider>
   );
