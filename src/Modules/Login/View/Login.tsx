@@ -50,9 +50,10 @@ const Login = () => {
     }
   };
 
-  const handleForgotSubmit = async (e: any) => {
+  const handleForgotSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const email = e.target.email.value;
+    const form = e.currentTarget;
+    const email = (form.elements.namedItem("email") as HTMLInputElement).value;
     if (!email) return showNotification("error", "Email daxil edin");
 
     localStorage.removeItem("token");
@@ -69,10 +70,11 @@ const Login = () => {
     }
   };
 
-  const handleResetSubmit = async (e: any) => {
+  const handleResetSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const otp = e.target.otp.value;
-    const newPassword = e.target.newPassword.value;
+    const form = e.currentTarget;
+    const otp = (form.elements.namedItem("otp") as HTMLInputElement).value;
+    const newPassword = (form.elements.namedItem("newPassword") as HTMLInputElement).value;
 
     if (!otp || !newPassword) return showNotification("error", "Bütün sahələri doldurun");
 

@@ -29,10 +29,10 @@ export interface IUserRequest {
   isActive: boolean;
 }
 export interface IUserNew {
-  name: "";
-  surname: "";
-  email: "";
-  password: "";
+  name: string;
+  surname: string;
+  email: string;
+  password: string;
   role?: userRoleEnum;
 }
 export interface IUserImage {

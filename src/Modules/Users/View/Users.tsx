@@ -7,9 +7,12 @@ import { FaUserCog, FaBan, FaCheckCircle, FaTrash } from "react-icons/fa";
 import showNotification from "../../../utils/showNotification";
 import Swal from "sweetalert2";
 
+import { type IUser } from "../../Profile/Models/ProfileModels";
+import type { AxiosError } from "axios";
+
 const Users = () => {
   const { t } = useTranslation();
-  const [users, setUsers] = useState<any[]>([]);
+  const [users, setUsers] = useState<IUser[]>([]);
   const [loading, setLoading] = useState(false);
 
   const getData = async () => {
@@ -48,7 +51,8 @@ const Users = () => {
           showNotification("success", `User ${newStatus ? 'activated' : 'deactivated'} successfully`);
           getData();
         } catch (error: any) {
-          showNotification("error", error.response?.data || "Operation failed");
+          const axiosError = error as AxiosError;
+          showNotification("error", (axiosError.response?.data as string) || "Operation failed");
         } finally {
           setLoading(false);
         }
@@ -76,7 +80,8 @@ const Users = () => {
           showNotification("success", "Role changed successfully");
           getData();
         } catch (error: any) {
-          showNotification("error", error.response?.data || "Role change failed");
+          const axiosError = error as AxiosError;
+          showNotification("error", (axiosError.response?.data as string) || "Role change failed");
         } finally {
           setLoading(false);
         }
@@ -149,7 +154,7 @@ const Users = () => {
                       className="action-btn delete"
                       title="Delete User"
                       style={{ color: "#f44336" }}
-                      onClick={(e) => {
+                      onClick={(e: React.MouseEvent) => {
                         e.preventDefault();
                         e.stopPropagation();
 
@@ -165,11 +170,9 @@ const Users = () => {
                         }).then((result) => {
                           if (result.isConfirmed) {
                             setLoading(true);
-                            // 1. Send OTP
                             ProfileService.sendAdminDeleteOTP()
                               .then(() => {
                                 setLoading(false);
-                                // 2. Prompt for OTP
                                 Swal.fire({
                                   title: "Enter OTP",
                                   input: "text",
@@ -184,12 +187,12 @@ const Users = () => {
                                       return false;
                                     }
                                     try {
-                                      // 3. Delete with OTP
                                       await ProfileService.adminDeleteUser(user._id, otp);
                                       return true;
                                     } catch (error: any) {
+                                      const axiosError = error as AxiosError;
                                       Swal.showValidationMessage(
-                                        error.response?.data || "Request failed"
+                                        (axiosError.response?.data as string) || "Request failed"
                                       );
                                       return false;
                                     }
@@ -224,7 +227,7 @@ const Users = () => {
           </table>
         </div>
       </div>
-    </section>
+    </section >
   );
 };
 

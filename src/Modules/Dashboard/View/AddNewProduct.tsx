@@ -33,10 +33,12 @@ const AddNewProduct = () => {
     },
   });
 
-  const handleSeletctImage = (e: any) => {
-    const file = e.target.files[0];
-    setImage(file);
-    setPreview(URL.createObjectURL(file));
+  const handleSeletctImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setImage(file);
+      setPreview(URL.createObjectURL(file));
+    }
   };
 
   const onSubmit: SubmitHandler<IProductRequest> = async (data) => {

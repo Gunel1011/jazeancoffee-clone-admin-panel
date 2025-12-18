@@ -22,7 +22,7 @@ const AddNewUser = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<IUserNew>({
-    resolver: yupResolver(userShema) as any,
+    resolver: yupResolver(userShema),
     values: {
       name: "",
       surname: "",

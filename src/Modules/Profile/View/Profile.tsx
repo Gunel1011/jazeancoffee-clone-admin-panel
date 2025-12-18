@@ -9,8 +9,8 @@ import { FaMapLocationDot } from "react-icons/fa6";
 
 const Profile = () => {
   const { t } = useTranslation();
-  const { user }: any = useContext(AuthContext);
-  const [openImage, setOpenImage] = useState(false)
+  const { user } = useContext(AuthContext);
+  const [openImage, setOpenImage] = useState(false);
 
   return (
     <section className="profile">

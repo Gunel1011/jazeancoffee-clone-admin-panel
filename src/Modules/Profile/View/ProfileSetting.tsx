@@ -1,4 +1,5 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
+import type { AxiosError } from "axios";
 import { userRoleEnum, type IUserRequest } from "../Models/ProfileModels";
 import { boolean, number, object, string } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -22,8 +23,8 @@ const userShema = object({
 
 const ProfileSetting = () => {
   const { t } = useTranslation();
-  const { user, refreshProfile }: any = useContext(AuthContext);
-  const [image, setImage] = useState<any>("");
+  const { user, refreshProfile } = useContext(AuthContext);
+  const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState("");
   const [loading, setLoading] = useState(false);
   const navigation = useNavigate();
@@ -32,7 +33,7 @@ const ProfileSetting = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<IUserRequest>({
-    resolver: yupResolver(userShema) as any,
+    resolver: yupResolver(userShema),
     values: {
       name: user?.name || "",
       surname: user?.surname || "",
@@ -45,10 +46,12 @@ const ProfileSetting = () => {
     },
   });
 
-  const handleSeletctImage = (e: any) => {
-    const file = e.target.files[0];
-    setImage(file);
-    setPreview(URL?.createObjectURL(file));
+  const handleSeletctImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setImage(file);
+      setPreview(URL?.createObjectURL(file));
+    }
   };
 
   const onSubmit: SubmitHandler<IUserRequest> = async (data) => {
@@ -64,7 +67,8 @@ const ProfileSetting = () => {
       showNotification("success", res?.message || "Profile updated");
       navigation("/profile");
     } catch (error: any) {
-      showNotification("error", error.response?.data || "Update failed");
+      const axiosError = error as AxiosError;
+      showNotification("error", (axiosError.response?.data as string) || "Update failed");
     } finally {
       setLoading(false);
     }
@@ -178,11 +182,11 @@ const ProfileSetting = () => {
 
           <div className="login-box" style={{ marginTop: "30px" }}>
             <h2 className="titleEdit" style={{ fontSize: "20px", marginBottom: "20px" }}>{t("addNewUser.changePassword")}</h2>
-            <form onSubmit={(e) => {
+            <form onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
               e.preventDefault();
-              const form = e.target as any;
-              const oldPass = form.oldPassword.value;
-              const newPass = form.newPassword.value;
+              const form = e.currentTarget;
+              const oldPass = (form.elements.namedItem("oldPassword") as HTMLInputElement).value;
+              const newPass = (form.elements.namedItem("newPassword") as HTMLInputElement).value;
               if (!oldPass || !newPass) return showNotification("error", "Please fill all fields");
               setLoading(true);
               ProfileService.changePassword(oldPass, newPass)
@@ -191,7 +195,8 @@ const ProfileSetting = () => {
                   form.reset();
                 })
                 .catch((err: any) => {
-                  showNotification("error", err.response?.data || "Failed to change password");
+                  const axiosError = err as AxiosError;
+                  showNotification("error", (axiosError.response?.data as string) || "Failed to change password");
                 })
                 .finally(() => setLoading(false));
             }}>
