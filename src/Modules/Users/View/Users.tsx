@@ -14,14 +14,12 @@ const Users = () => {
   const { t } = useTranslation();
   const [users, setUsers] = useState<IUser[]>([]);
   const [loading, setLoading] = useState(false);
-
   const getData = async () => {
     setLoading(true);
     try {
       const res = await UserService.getAllUsers();
       setUsers(res);
     } catch (error) {
-      // Failed to load users
     } finally {
       setLoading(false);
     }
@@ -36,33 +34,37 @@ const Users = () => {
 
     Swal.fire({
       title: "Are you sure you want to change status?",
-      text: `User will be ${newStatus ? 'activated' : 'deactivated'}`,
+      text: `User will be ${newStatus ? "activated" : "deactivated"}`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: newStatus ? "#4caf50" : "#f44336",
       cancelButtonColor: "#3085d6",
       confirmButtonText: "Okay",
-      cancelButtonText: "Cancel"
+      cancelButtonText: "Cancel",
     }).then(async (result) => {
       if (result.isConfirmed) {
         setLoading(true);
         try {
           await ProfileService.adminChangeStatus(email, newStatus);
-          showNotification("success", `User ${newStatus ? 'activated' : 'deactivated'} successfully`);
+          showNotification(
+            "success",
+            `User ${newStatus ? "activated" : "deactivated"} successfully`
+          );
           getData();
         } catch (error: any) {
           const axiosError = error as AxiosError;
-          showNotification("error", (axiosError.response?.data as string) || "Operation failed");
+          showNotification(
+            "error",
+            (axiosError.response?.data as string) || "Operation failed"
+          );
         } finally {
           setLoading(false);
         }
       }
     });
   };
-
   const handleChangeRole = async (id: string, currentRole: string) => {
-    const newRole = currentRole === 'admin' ? 'user' : 'admin';
-
+    const newRole = currentRole === "admin" ? "user" : "admin";
     Swal.fire({
       title: "Are you sure you want to change role?",
       text: `Role will be changed to ${newRole}`,
@@ -71,7 +73,7 @@ const Users = () => {
       confirmButtonColor: "#ff9800",
       cancelButtonColor: "#3085d6",
       confirmButtonText: "Okay",
-      cancelButtonText: "Cancel"
+      cancelButtonText: "Cancel",
     }).then(async (result) => {
       if (result.isConfirmed) {
         setLoading(true);
@@ -81,18 +83,20 @@ const Users = () => {
           getData();
         } catch (error: any) {
           const axiosError = error as AxiosError;
-          showNotification("error", (axiosError.response?.data as string) || "Role change failed");
+          showNotification(
+            "error",
+            (axiosError.response?.data as string) || "Role change failed"
+          );
         } finally {
           setLoading(false);
         }
       }
     });
-  }
+  };
 
   if (loading) {
     return <Loading />;
   }
-
   return (
     <section className="users">
       <div className="container">
@@ -122,12 +126,18 @@ const Users = () => {
                       <div className="no-img">No Img</div>
                     )}
                   </td>
-                  <td>{user.name} {user.surname}</td>
+                  <td>
+                    {user.name} {user.surname}
+                  </td>
                   <td>{user.email}</td>
                   <td>{user.role}</td>
                   <td>{user.age}</td>
                   <td>
-                    <span className={user.isActive ? "status active" : "status inactive"}>
+                    <span
+                      className={
+                        user.isActive ? "status active" : "status inactive"
+                      }
+                    >
                       {user.isActive ? "Active" : "Inactive"}
                     </span>
                   </td>
@@ -140,7 +150,9 @@ const Users = () => {
                       <FaUserCog />
                     </button>
                     <button
-                      className={`action-btn ${user.isActive ? 'deactivate' : 'activate'}`}
+                      className={`action-btn ${
+                        user.isActive ? "deactivate" : "activate"
+                      }`}
                       title={user.isActive ? "Deactivate" : "Activate"}
                       onClick={(e) => {
                         e.preventDefault();
@@ -166,7 +178,7 @@ const Users = () => {
                           confirmButtonColor: "#f44336",
                           cancelButtonColor: "#3085d6",
                           confirmButtonText: "Send OTP",
-                          cancelButtonText: "Cancel"
+                          cancelButtonText: "Cancel",
                         }).then((result) => {
                           if (result.isConfirmed) {
                             setLoading(true);
@@ -183,28 +195,34 @@ const Users = () => {
                                   showLoaderOnConfirm: true,
                                   preConfirm: async (otp) => {
                                     if (!otp) {
-                                      Swal.showValidationMessage('Please enter OTP');
+                                      Swal.showValidationMessage(
+                                        "Please enter OTP"
+                                      );
                                       return false;
                                     }
                                     try {
-                                      await ProfileService.adminDeleteUser(user._id, otp);
+                                      await ProfileService.adminDeleteUser(
+                                        user._id,
+                                        otp
+                                      );
                                       return true;
                                     } catch (error: any) {
                                       const axiosError = error as AxiosError;
                                       Swal.showValidationMessage(
-                                        (axiosError.response?.data as string) || "Request failed"
+                                        (axiosError.response?.data as string) ||
+                                          "Request failed"
                                       );
                                       return false;
                                     }
                                   },
-                                  allowOutsideClick: () => !Swal.isLoading()
+                                  allowOutsideClick: () => !Swal.isLoading(),
                                 }).then((result) => {
                                   if (result.isConfirmed) {
                                     Swal.fire({
                                       title: "Deleted!",
                                       text: "User has been deleted.",
                                       icon: "success",
-                                      confirmButtonText: "Okay"
+                                      confirmButtonText: "Okay",
                                     });
                                     getData();
                                   }
@@ -212,7 +230,10 @@ const Users = () => {
                               })
                               .catch((err: any) => {
                                 setLoading(false);
-                                showNotification("error", err.response?.data || "Failed to send OTP");
+                                showNotification(
+                                  "error",
+                                  err.response?.data || "Failed to send OTP"
+                                );
                               });
                           }
                         });
@@ -227,7 +248,7 @@ const Users = () => {
           </table>
         </div>
       </div>
-    </section >
+    </section>
   );
 };
 

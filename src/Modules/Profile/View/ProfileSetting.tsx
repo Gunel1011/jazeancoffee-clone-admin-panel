@@ -10,7 +10,8 @@ import showNotification from "../../../utils/showNotification";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Loading from "../../../components/Loading";
-
+import { PhoneInput } from "react-international-phone";
+import "react-international-phone/style.css";
 const userShema = object({
   name: string().trim().required(),
   surname: string().trim().required(),
@@ -22,6 +23,7 @@ const userShema = object({
 });
 
 const ProfileSetting = () => {
+  const [phone, setPhone] = useState("");
   const { t } = useTranslation();
   const { user, refreshProfile } = useContext(AuthContext);
   const [image, setImage] = useState<File | null>(null);
@@ -68,16 +70,17 @@ const ProfileSetting = () => {
       navigation("/profile");
     } catch (error: any) {
       const axiosError = error as AxiosError;
-      showNotification("error", (axiosError.response?.data as string) || "Update failed");
+      showNotification(
+        "error",
+        (axiosError.response?.data as string) || "Update failed"
+      );
     } finally {
       setLoading(false);
     }
   };
-
   if (loading) {
     return <Loading />;
   }
-
   return (
     <section className="editCoffee">
       <div className="container">
@@ -95,7 +98,9 @@ const ProfileSetting = () => {
                   {t("profile.name")}
                 </label>
               </div>
-              {errors.name && <span className="error">{errors.name?.message}</span>}
+              {errors.name && (
+                <span className="error">{errors.name?.message}</span>
+              )}
 
               <div className="user-box">
                 <input
@@ -107,7 +112,9 @@ const ProfileSetting = () => {
                   {t("profile.surname")}
                 </label>
               </div>
-              {errors.surname && <span className="error">{errors.surname?.message}</span>}
+              {errors.surname && (
+                <span className="error">{errors.surname?.message}</span>
+              )}
 
               <div className="user-box">
                 <input
@@ -119,19 +126,27 @@ const ProfileSetting = () => {
                   {t("profile.age")}
                 </label>
               </div>
-              {errors.age && <span className="error">{errors.age?.message}</span>}
+              {errors.age && (
+                <span className="error">{errors.age?.message}</span>
+              )}
 
               <div className="user-box">
-                <input
-                  className={errors.phone ? "error" : ""}
-                  type="text"
-                  {...register("phone")}
-                />
+                <div>
+                  <PhoneInput
+                    className={errors.phone ? "error" : ""}
+                    defaultCountry="ua"
+                    value={phone}
+                    {...register("phone")}
+                    onChange={(phone) => setPhone(phone)}
+                  />
+                </div>
                 <label className={errors.phone ? "error" : ""}>
                   {t("profile.phone")}
                 </label>
               </div>
-              {errors.phone && <span className="error">{errors.phone?.message}</span>}
+              {errors.phone && (
+                <span className="error">{errors.phone?.message}</span>
+              )}
 
               <div className="user-box">
                 <input
@@ -143,7 +158,9 @@ const ProfileSetting = () => {
                   {t("profile.email")}
                 </label>
               </div>
-              {errors.email && <span className="error">{errors.email?.message}</span>}
+              {errors.email && (
+                <span className="error">{errors.email?.message}</span>
+              )}
 
               <div className="user-box">
                 <input
@@ -155,7 +172,9 @@ const ProfileSetting = () => {
                   {t("profile.address")}
                 </label>
               </div>
-              {errors.address && <span className="error">{errors.address?.message}</span>}
+              {errors.address && (
+                <span className="error">{errors.address?.message}</span>
+              )}
 
               <div className="user-box">
                 <input
@@ -180,37 +199,56 @@ const ProfileSetting = () => {
             </form>
           </div>
 
-          <div className="login-box" style={{ marginTop: "30px" }}>
-            <h2 className="titleEdit" style={{ fontSize: "20px", marginBottom: "20px" }}>{t("addNewUser.changePassword")}</h2>
-            <form onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
-              e.preventDefault();
-              const form = e.currentTarget;
-              const oldPass = (form.elements.namedItem("oldPassword") as HTMLInputElement).value;
-              const newPass = (form.elements.namedItem("newPassword") as HTMLInputElement).value;
-              if (!oldPass || !newPass) return showNotification("error", "Please fill all fields");
-              setLoading(true);
-              ProfileService.changePassword(oldPass, newPass)
-                .then(() => {
-                  showNotification("success", "Password changed successfully");
-                  form.reset();
-                })
-                .catch((err: any) => {
-                  const axiosError = err as AxiosError;
-                  showNotification("error", (axiosError.response?.data as string) || "Failed to change password");
-                })
-                .finally(() => setLoading(false));
-            }}>
+          <div className="login-box">
+            <h2
+              className="titleEdit"
+              style={{ fontSize: "20px", marginBottom: "20px" }}
+            >
+              Change Password
+            </h2>
+            <form
+              onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
+                e.preventDefault();
+                const form = e.currentTarget;
+                const oldPass = (
+                  form.elements.namedItem("oldPassword") as HTMLInputElement
+                ).value;
+                const newPass = (
+                  form.elements.namedItem("newPassword") as HTMLInputElement
+                ).value;
+                if (!oldPass || !newPass)
+                  return showNotification("error", "Please fill all fields");
+                setLoading(true);
+                ProfileService.changePassword(oldPass, newPass)
+                  .then(() => {
+                    showNotification(
+                      "success",
+                      "Password changed successfully"
+                    );
+                    form.reset();
+                  })
+                  .catch((err: any) => {
+                    const axiosError = err as AxiosError;
+                    showNotification(
+                      "error",
+                      (axiosError.response?.data as string) ||
+                        "Failed to change password"
+                    );
+                  })
+                  .finally(() => setLoading(false));
+              }}
+            >
               <div className="user-box">
                 <input type="password" name="oldPassword" required />
-                <label>{t("addNewUser.oldPassword")}</label>
+                <label>Old Password</label>
               </div>
               <div className="user-box">
                 <input type="password" name="newPassword" required />
-                <label>{t("addNewUser.newPassword")}</label>
+                <label>New Password</label>
               </div>
               <div className="btn">
                 <button type="submit">
-                  {t("addNewUser.changePassword")}
+                  Change Password
                   <span></span>
                 </button>
               </div>

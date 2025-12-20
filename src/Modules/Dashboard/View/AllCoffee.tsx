@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { FaTrash, FaEdit } from "react-icons/fa";
-
-// Router
 import { Link } from "react-router-dom";
 import type { IProduct } from "../Models/DashboardModels";
 import { ShopService } from "../Services/DashboardServices";
@@ -17,11 +15,12 @@ const AllCoffee = () => {
     setLoading(true);
     try {
       const res = await ShopService.productList();
-      // Remove duplicates based on _id
-      const uniqueProducts = res.filter((v, i, a) => a.findIndex(t => (t._id === v._id)) === i);
-      setProduct(uniqueProducts);
+      setProduct(res);
     } catch (error: any) {
-      showNotification("error", error.response?.data || "Failed to load products");
+      showNotification(
+        "error",
+        error.response?.data || "Failed to load products"
+      );
     } finally {
       setLoading(false);
     }

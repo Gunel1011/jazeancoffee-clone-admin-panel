@@ -19,7 +19,6 @@ const AddNewProduct = () => {
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState("");
-
   const {
     register,
     handleSubmit,
@@ -32,7 +31,6 @@ const AddNewProduct = () => {
       price: 0,
     },
   });
-
   const handleSeletctImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -40,7 +38,6 @@ const AddNewProduct = () => {
       setPreview(URL.createObjectURL(file));
     }
   };
-
   const onSubmit: SubmitHandler<IProductRequest> = async (data) => {
     setLoading(true);
     try {
@@ -52,17 +49,14 @@ const AddNewProduct = () => {
         formData.append("productImage", image);
       }
       await ShopService.addNewCoffee(formData);
-
       showNotification("success");
       navigation("/coffee");
     } catch (errors: any) {
-
       showNotification("error", errors.response?.data);
     } finally {
       setLoading(false);
     }
   };
-
   if (loading) {
     return <Loading />;
   }

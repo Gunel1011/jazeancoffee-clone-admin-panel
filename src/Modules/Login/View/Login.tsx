@@ -15,20 +15,18 @@ const loginChema = object({
   email: string()
     .trim()
     .required()
-    .matches(EMAIL_REGEX, "Zəhmət olmasa düzgün mail daxil edin..."),
+    .matches(EMAIL_REGEX, "Please enter a valid email address..."),
   password: string()
     .trim()
     .required()
-    .matches(PASSWORD_REGEX, "Zəhmət olmasa düzgün şifrə daxil edin..."),
+    .matches(PASSWORD_REGEX, "Please enter a valid password..."),
 });
-
 const Login = () => {
   const { setIsUserIn } = useContext(AuthContext);
   const navigation = useNavigate();
   const [view, setView] = useState<"login" | "forgot" | "reset">("login");
   const [loading, setLoading] = useState(false);
   const [resetEmail, setResetEmail] = useState("");
-
   const {
     register,
     handleSubmit,
@@ -36,7 +34,6 @@ const Login = () => {
   } = useForm<ILoginRequest>({
     resolver: yupResolver(loginChema),
   });
-
   const onLoginSubmit: SubmitHandler<ILoginRequest> = async (data) => {
     setLoading(true);
     try {
@@ -49,22 +46,20 @@ const Login = () => {
       setLoading(false);
     }
   };
-
   const handleForgotSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     const email = (form.elements.namedItem("email") as HTMLInputElement).value;
     if (!email) return showNotification("error", "Email daxil edin");
-
     localStorage.removeItem("token");
     setLoading(true);
     try {
       await ProfileService.sendResetPasswordOTP(email);
       setResetEmail(email);
-      showNotification("success", "OTP kod email-inizə göndərildi");
+      showNotification("success", "OTP code has been sent to your email.");
       setView("reset");
     } catch (error: any) {
-      showNotification("error", error.response?.data || "OTP göndərilmədi");
+      showNotification("error", error.response?.data || "OTP could not be sent.");
     } finally {
       setLoading(false);
     }
@@ -74,10 +69,12 @@ const Login = () => {
     e.preventDefault();
     const form = e.currentTarget;
     const otp = (form.elements.namedItem("otp") as HTMLInputElement).value;
-    const newPassword = (form.elements.namedItem("newPassword") as HTMLInputElement).value;
+    const newPassword = (
+      form.elements.namedItem("newPassword") as HTMLInputElement
+    ).value;
 
-    if (!otp || !newPassword) return showNotification("error", "Bütün sahələri doldurun");
-
+    if (!otp || !newPassword)
+      return showNotification("error", "Bütün sahələri doldurun");
     setLoading(true);
     try {
       await ProfileService.resetPasswordWithOTP(resetEmail, otp, newPassword);
@@ -112,13 +109,19 @@ const Login = () => {
                     <label>Password</label>
                     <input type="password" {...register("password")} />
                     {errors.password && (
-                      <span className="errorMsg">{errors.password?.message}</span>
+                      <span className="errorMsg">
+                        {errors.password?.message}
+                      </span>
                     )}
                   </div>
                   <div style={{ textAlign: "right", marginBottom: "15px" }}>
                     <span
                       onClick={() => setView("forgot")}
-                      style={{ cursor: "pointer", color: "#b25d27", fontSize: "14px" }}
+                      style={{
+                        cursor: "pointer",
+                        color: "#b25d27",
+                        fontSize: "14px",
+                      }}
                     >
                       Şifrəni unutmusunuz?
                     </span>
@@ -138,9 +141,28 @@ const Login = () => {
                     <label>Email daxil edin</label>
                     <input type="email" name="email" required />
                   </div>
-                  <div style={{ display: "flex", justifyContent: "space-between", marginTop: "10px" }}>
-                    <button type="button" onClick={() => setView("login")} className="loginBtn" style={{ background: "#666", width: "45%" }}>Geri</button>
-                    <button type="submit" className="loginBtn" style={{ width: "45%" }}>OTP Göndər</button>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      marginTop: "10px",
+                    }}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setView("login")}
+                      className="loginBtn"
+                      style={{ background: "#666", width: "45%" }}
+                    >
+                      Geri
+                    </button>
+                    <button
+                      type="submit"
+                      className="loginBtn"
+                      style={{ width: "45%" }}
+                    >
+                      OTP Göndər
+                    </button>
                   </div>
                 </form>
               </div>
@@ -160,9 +182,28 @@ const Login = () => {
                     <label>Yeni Şifrə</label>
                     <input type="password" name="newPassword" required />
                   </div>
-                  <div style={{ display: "flex", justifyContent: "space-between", marginTop: "10px" }}>
-                    <button type="button" onClick={() => setView("forgot")} className="loginBtn" style={{ background: "#666", width: "45%" }}>Geri</button>
-                    <button type="submit" className="loginBtn" style={{ width: "45%" }}>Təsdiqlə</button>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      marginTop: "10px",
+                    }}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setView("forgot")}
+                      className="loginBtn"
+                      style={{ background: "#666", width: "45%" }}
+                    >
+                      Geri
+                    </button>
+                    <button
+                      type="submit"
+                      className="loginBtn"
+                      style={{ width: "45%" }}
+                    >
+                      Təsdiqlə
+                    </button>
                   </div>
                 </form>
               </div>

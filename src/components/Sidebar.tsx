@@ -44,7 +44,6 @@ const Sidebar = ({ isCollapsed, toggleSidebar, mobileOpen, closeMobileSidebar }:
                         </div>
                     ))}
             </nav>
-
             <div className="userArea">
                 {isUserIn ? (
                     <div className="userProfile" onClick={logout} title={t("header.logout")}>

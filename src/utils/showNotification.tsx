@@ -9,8 +9,8 @@ const showNotification = (type: TypeOptions = "default", text?: string) => {
         ? "System error !"
         : "Operation completed !";
   }
-  // @ts-ignore
-  toast[type](text, {
+  const toastMethod = type === "default" ? toast : toast[type];
+  toastMethod(text, {
     position: "top-left",
     autoClose: 5000,
     hideProgressBar: false,
@@ -20,6 +20,10 @@ const showNotification = (type: TypeOptions = "default", text?: string) => {
     progress: undefined,
     theme: "colored",
     transition: Bounce,
+    style: {
+      background: "#5e4c47",
+      color: "#fff",
+    },
   });
 };
 
