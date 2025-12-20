@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "../assets/img/jazeanLogo.png";
+import gift from "../assets/img/CuteCupAnimatedStickers-FurkanSyler-ezgif.com-gif-maker (1).gif";
 const NotFound = () => {
   return (
     <section className="notFound">
@@ -17,7 +17,7 @@ const NotFound = () => {
             </div>
           </div>
           <div className="notFoundImg">
-            <img src={logo} alt="imgNotFound" />
+            <img src={gift} alt="imgNotFound" />
           </div>
         </div>
       </div>

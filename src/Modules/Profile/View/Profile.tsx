@@ -21,7 +21,6 @@ const Profile = () => {
             <div className={`profileImg ${openImage ? "zoomed" : ""}`}>
               <img onClick={() => setOpenImage(!openImage)} src={user?.profileImage} alt={user?.name} />
             </div>
-            <Link className="btnSettingTo" to={"/setting"}>Düzəliş et</Link>
             <div className="rightSide">
               <h2 className="name">
                 {t("profile.name")}: {user?.name}

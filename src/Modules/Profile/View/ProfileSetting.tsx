@@ -134,7 +134,7 @@ const ProfileSetting = () => {
                 <div>
                   <PhoneInput
                     className={errors.phone ? "error" : ""}
-                    defaultCountry="ua"
+                    defaultCountry="az"
                     value={phone}
                     {...register("phone")}
                     onChange={(phone) => setPhone(phone)}

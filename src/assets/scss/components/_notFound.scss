@@ -1,12 +1,10 @@
 @use "../variables" as *;
-
 .notFound {
-  background-color: $bg;
-  height: calc(100vh - 100px);
+  background-color: #180d0a;
+  height:90vh;
   padding-top: 70px;
   position: relative;
-  z-index: -1;
-
+  z-index: 3;
   .container {
     .row {
       align-items: center;
