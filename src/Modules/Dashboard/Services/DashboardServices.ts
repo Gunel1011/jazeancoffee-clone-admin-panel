@@ -15,8 +15,6 @@ export class ShopService {
         productImage: res.data.productImage,
       };
     });
-  
-
   static async editCoffee(payload: FormData, id: string) {
     return await ShopProvider.putCoffeeDetails(payload, id).then((res) => {
       return res.data;
