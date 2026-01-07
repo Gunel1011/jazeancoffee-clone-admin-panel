@@ -7,7 +7,7 @@ export class UserService {
             return res.data.map((item: IUser) => ({
                 ...item,
                 profileImage: item.profileImage
-                    ? `${import.meta.env.VITE_IMAGE_URL}/${item.profileImage}`
+                    ? `${item.profileImage}`
                     : null,
             }));
         });

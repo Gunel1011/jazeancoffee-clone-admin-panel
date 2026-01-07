@@ -4,7 +4,7 @@ export class ShopService {
     return await ShopProvider.getProducts().then((res) => {
       return res.data.map((item) => ({
         ...item,
-        productImage: `${import.meta.env.VITE_IMAGE_URL}/${item.productImage}`,
+        productImage: `${item.productImage}`,
       }));
     });
   }
@@ -12,11 +12,10 @@ export class ShopService {
     return await ShopProvider.getCoffeeDetails(id).then((res) => {
       return {
         ...res.data,
-        productImage:
-          import.meta.env.VITE_IMAGE_URL + "/" + res.data.productImage,
+        productImage: res.data.productImage,
       };
     });
-  }
+  
 
   static async editCoffee(payload: FormData, id: string) {
     return await ShopProvider.putCoffeeDetails(payload, id).then((res) => {

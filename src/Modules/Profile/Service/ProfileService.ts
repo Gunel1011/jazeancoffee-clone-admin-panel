@@ -6,7 +6,7 @@ export class ProfileService {
     return await ProfileProvider.getUserData().then((res) => {
       return {
         ...res.data,
-        profileImage: `${import.meta.env.VITE_IMAGE_URL}/${res.data.profileImage
+        profileImage: `${res.data.profileImage
           }`,
       };
     });
@@ -20,7 +20,7 @@ export class ProfileService {
     return await ProfileProvider.putUserImage(payload).then((res) => {
       return {
         ...res.data,
-        profileImage: `${import.meta.env.VITE_IMAGE_URL}/${res.data.profileImage
+        profileImage: `${res.data.profileImage
           }`,
       };
     });
